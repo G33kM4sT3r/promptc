@@ -69,12 +69,20 @@ Rules are order-dependent — `rule_ordering_test.go` encodes constraints. When 
 - Runtime: `history.json` (gitignored), `data/lid.176.ftz` (optional, gitignored)
 - Worktrees: `.worktrees/` (gitignored)
 
+## CI/CD
+
+- **GitHub Actions pinned versions**: checkout@v5, setup-go@v6, golangci-lint-action@v9 (version: v2.10)
+- **Source-only releases**: No binary builds — CGO (go-fasttext) prevents cross-compilation. `softprops/action-gh-release@v2` creates releases from tags.
+- **Release workflow**: `release.yml` extracts changelog section via awk from `CHANGELOG.md` for release body. Triggered by `v*` tags.
+- **Changelog format**: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Add entry before tagging.
+- **Release process**: Update CHANGELOG.md → commit → `git tag v<version>` → push with `--tags`
+
 ## Known Gotchas
 
 - **macOS linker warning**: `ld: warning: ignoring duplicate libraries: '-lc++'` from go-fasttext CGO. Suppressed in Makefile via `CGO_LDFLAGS`. Harmless.
 - **Extraction case**: Lookup maps use lowercase keys. Always `strings.ToLower()` before lookups, preserve original case in output.
 - **Translation keys**: Both `en.yaml` and `de.yaml` must have symmetric keys. No orphaned keys.
-- **golangci-lint v2**: Requires `version: "2"`. `gofmt` under `formatters:` not `linters:`. `gosimple` merged into `staticcheck`. `errcheck.check-type-assertions` ignores path-based excludes.
+- **golangci-lint v2**: Requires `version: "2"`. `gofmt` under `formatters:` not `linters:`. `gosimple` merged into `staticcheck`. `errcheck.check-type-assertions` ignores path-based excludes. Exclusion rules go under `linters.exclusions.rules:` (NOT `issues.exclude-rules` — that's v1 schema).
 - **Coverage**: `cmd/promptc/` excluded — integration tests use `exec.Command` on compiled binary. Use `go list ./... | grep -v promptc/cmd/` for coverage. CLI tests run separately.
 - **CLI integration tests**: Require `PROMPTC_DATA` env var set to project root for binary to find `data/` and `languages/`.
 - **UI color tests**: Non-TTY = no ANSI. `NO_COLOR` uses `os.LookupEnv` (existence check). Set `colorsOff = false` directly in tests.
