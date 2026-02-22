@@ -1,0 +1,35 @@
+implementation_medium:
+  prepositions:
+    en: [with, using, in, via]
+    de: [mit, mittels, mithilfe]
+  multi_word: true
+  stop_words:
+    en: [for, about, on, like, without, and, but, or, to, the, a, an]
+    de: [für, über, zu, wie, ohne, und, aber, oder, der, die, das, ein, eine]
+
+target_object:
+  prepositions:
+    en: [for, about, on]
+    de: [für, fuer, über, ueber, zu]
+  multi_word: true
+  stop_words:
+    en: [with, using, in, via, like, without, and, but, or, to]
+    de: [mit, mittels, wie, ohne, und, aber, oder]
+
+example_object:
+  prepositions:
+    en: [like, such as]
+    de: [wie zum beispiel, wie etwa]
+  multi_word: true
+  stop_words:
+    en: [with, using, in, via, for, about, on, without, and, but, or]
+    de: [mit, mittels, für, über, zu, ohne, und, aber, oder]
+
+constraint_object:
+  prepositions:
+    en: [without, excluding]
+    de: [ohne, ausgenommen]
+  multi_word: true
+  stop_words:
+    en: [with, using, in, via, for, about, on, like, and, but, or]
+    de: [mit, mittels, für, über, zu, wie, und, aber, oder]

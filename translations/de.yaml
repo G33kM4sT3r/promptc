@@ -1,0 +1,96 @@
+labels:
+  role: "Rolle"
+  objective: "Ziel"
+  context: "Kontext"
+  scope: "Umfang"
+  constraints: "Einschränkungen"
+  output: "Ausgabeformat"
+  quality: "Qualitätskriterien"
+
+objective:
+  explain: "Erkläre %s."
+  howto: "Anleitung für %s."
+  generate: "Erstelle %s."
+  analyze: "Analysiere %s."
+  decide: "Hilf bei der Entscheidung über %s."
+  fallback: "Stelle relevante Informationen bereit."
+  fallback_topic: "das gegebene Thema"
+
+role:
+  from_entity: "Du hast Erfahrung im Umgang mit %s."
+
+context:
+  getting_started: "Der Benutzer ist in einer frühen Phase und sucht erste Orientierung."
+  implementation: "Der Benutzer implementiert aktiv eine Lösung."
+  optimization: "Der Benutzer möchte eine bestehende Lösung verbessern."
+  audience_beginners: "Die Erklärung sollte anfängerfreundlich sein."
+  audience_advanced: "Die Erklärung darf fortgeschrittenes Vorwissen voraussetzen."
+  target_object: "Der Zielbereich ist %s."
+
+scope:
+  # explain scopes
+  explain_short_overview: "Einen groben Überblick geben"
+  explain_short_key: "Das Schlüsselkonzept kurz erklären"
+  explain_deep_detail: "Die Kernkonzepte im Detail erklären"
+  explain_deep_examples: "Praktische Beispiele liefern"
+  explain_deep_nuances: "Wichtige Nuancen besprechen"
+  explain_main: "Das Hauptkonzept erklären"
+  explain_aspects: "Die wichtigsten Aspekte abdecken"
+  # howto scopes
+  howto_gs_goals: "Projektziele und Anforderungen klären"
+  howto_gs_approach: "Einen grundlegenden Ansatz skizzieren"
+  howto_gs_steps: "Erste konkrete Schritte identifizieren"
+  howto_impl_components: "Die Kernkomponenten der Lösung definieren"
+  howto_impl_approach: "Einen angemessenen Implementierungsansatz beschreiben"
+  howto_impl_pitfalls: "Häufige Fallstricke und Überlegungen hervorheben"
+  howto_opt_identify: "Verbesserungspotenziale identifizieren"
+  howto_opt_strategies: "Messbare Optimierungsstrategien vorschlagen"
+  howto_opt_prioritize: "Änderungen nach Auswirkung priorisieren"
+  # generate scopes
+  generate_complete: "Vollständige, gebrauchsfertige Ausgabe erstellen"
+  generate_conventions: "Etablierte Konventionen und Best Practices befolgen"
+  generate_structure: "Notwendige Struktur und Organisation einbeziehen"
+  # analyze scopes
+  analyze_strengths: "Stärken und Schwächen identifizieren"
+  analyze_evidence: "Evidenzbasierte Beobachtungen liefern"
+  analyze_improvements: "Konkrete Verbesserungen vorschlagen"
+  # decide scopes
+  decide_options: "Verfügbare Optionen klar präsentieren"
+  decide_tradeoffs: "Kompromisse zwischen Alternativen vergleichen"
+  decide_recommendation: "Eine Empfehlung mit Begründung geben"
+  # fallback
+  fallback: "Das Hauptthema klar behandeln"
+  example_reference: "Verwende %s als Referenzbeispiel"
+
+constraints:
+  concise: "Halte die Antwort knapp"
+  detailed: "Gib detaillierte Erklärungen"
+  simple_language: "Verwende einfache und klare Sprache"
+  no_jargon: "Vermeide unnötigen Fachjargon"
+  technical_accuracy: "Fokussiere auf technische Korrektheit"
+  formal: "Verwende formelle, professionelle Sprache"
+  casual: "Verwende einen lockeren, umgangssprachlichen Ton"
+  technical: "Verwende präzise technische Terminologie"
+  practical_usage: "Fokussiere auf die praktische Nutzung von %s"
+  no_use: "Verwende kein %s"
+
+output:
+  bullets: "Verwende Aufzählungszeichen"
+  steps: "Verwende eine Schritt-für-Schritt-Struktur"
+  prose: "Verwende fließende Prosa-Absätze"
+  table: "Verwende ein Tabellenformat zum Vergleich"
+  code: "Füge Code-Beispiele mit Kommentaren ein"
+  howto: "Präsentiere die Lösung in klarer, sequenzieller Reihenfolge"
+  explain: "Verwende klare Abschnittsüberschriften"
+  generate: "Präsentiere die Ausgabe in einem gebrauchsfertigen Format"
+  analyze: "Strukturiere Erkenntnisse mit klaren Kategorien"
+  decide: "Präsentiere Optionen nebeneinander zum einfachen Vergleich"
+  brief: "Halte Abschnitte kurz"
+  fallback: "Verwende eine klare und lesbare Struktur"
+
+quality:
+  clear: "Klar und strukturiert"
+  accurate: "Korrekt"
+  complete: "Vollständig und gebrauchsfertig"
+  balanced: "Ausgewogen und evidenzbasiert"
+  fair: "Fairer Vergleich aller Optionen"

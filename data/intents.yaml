@@ -1,0 +1,40 @@
+intents:
+  explain:
+    keywords:
+      en: [explain, describe, define, clarify, elaborate]
+      de: [erkläre, erklaere, beschreibe, definiere, erläutere, erlaeutere]
+    phrases:
+      en: [tell me about, what is, what are, what does, how does]
+      de: [was ist, was sind, was bedeutet, erzähl mir über]
+
+  howto:
+    keywords:
+      en: [how]
+      de: [wie]
+    phrases:
+      en: [how do i, how can i, how to, how should i, how would i]
+      de: [wie kann ich, wie soll ich, wie geht, wie mache ich]
+
+  generate:
+    keywords:
+      en: [generate, create, write, build, make, produce, draft, implement]
+      de: [erstelle, erzeuge, schreibe, baue, generiere, implementiere, entwerfe]
+    phrases:
+      en: [write me, give me]
+      de: [erstelle mir, schreibe mir, baue mir]
+
+  analyze:
+    keywords:
+      en: [analyze, analyse, review, evaluate, assess, examine, inspect, audit]
+      de: [analysiere, überprüfe, ueberpruefe, bewerte, untersuche, prüfe, pruefe]
+    phrases:
+      en: [take a look at, look at, check if, review the]
+      de: [schau dir an, überprüfe ob]
+
+  decide:
+    keywords:
+      en: [decide, choose, compare, pick, select, recommend]
+      de: [entscheide, wähle, waehle, vergleiche, empfehle]
+    phrases:
+      en: [should i use, which is better, what should i, which one, pros and cons]
+      de: [soll ich, was ist besser, welches ist besser]

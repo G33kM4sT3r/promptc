@@ -1,0 +1,96 @@
+labels:
+  role: "Role"
+  objective: "Objective"
+  context: "Context"
+  scope: "Scope"
+  constraints: "Constraints"
+  output: "Output"
+  quality: "Quality criteria"
+
+objective:
+  explain: "Explain %s."
+  howto: "Provide guidance on how to %s."
+  generate: "Generate %s."
+  analyze: "Analyze %s."
+  decide: "Help decide on %s."
+  fallback: "Provide relevant information."
+  fallback_topic: "the given topic"
+
+role:
+  from_entity: "You are experienced in working with %s."
+
+context:
+  getting_started: "The user is at an early stage and is looking for initial guidance."
+  implementation: "The user is actively implementing a solution."
+  optimization: "The user is looking to improve an existing solution."
+  audience_beginners: "The explanation should be beginner-friendly."
+  audience_advanced: "The explanation may assume advanced prior knowledge."
+  target_object: "The target domain is %s."
+
+scope:
+  # explain scopes
+  explain_short_overview: "Provide a high-level overview"
+  explain_short_key: "Explain the key concept briefly"
+  explain_deep_detail: "Explain the core concepts in detail"
+  explain_deep_examples: "Provide practical examples"
+  explain_deep_nuances: "Discuss important nuances"
+  explain_main: "Explain the main concept"
+  explain_aspects: "Cover the most important aspects"
+  # howto scopes
+  howto_gs_goals: "Clarify the project goals and requirements"
+  howto_gs_approach: "Outline a basic approach to start the project"
+  howto_gs_steps: "Identify initial concrete steps"
+  howto_impl_components: "Define the core components of the solution"
+  howto_impl_approach: "Describe a reasonable implementation approach"
+  howto_impl_pitfalls: "Highlight common pitfalls and considerations"
+  howto_opt_identify: "Identify areas for improvement"
+  howto_opt_strategies: "Suggest measurable optimization strategies"
+  howto_opt_prioritize: "Prioritize changes by impact"
+  # generate scopes
+  generate_complete: "Produce complete, ready-to-use output"
+  generate_conventions: "Follow established conventions and best practices"
+  generate_structure: "Include necessary structure and organization"
+  # analyze scopes
+  analyze_strengths: "Identify strengths and weaknesses"
+  analyze_evidence: "Provide evidence-based observations"
+  analyze_improvements: "Suggest concrete improvements"
+  # decide scopes
+  decide_options: "Present available options clearly"
+  decide_tradeoffs: "Compare trade-offs between alternatives"
+  decide_recommendation: "Provide a recommendation with rationale"
+  # fallback
+  fallback: "Address the main topic clearly"
+  example_reference: "Use %s as a reference example"
+
+constraints:
+  concise: "Keep the response concise"
+  detailed: "Provide detailed explanations"
+  simple_language: "Use simple and clear language"
+  no_jargon: "Avoid unnecessary jargon"
+  technical_accuracy: "Focus on technical accuracy"
+  formal: "Use formal, professional language"
+  casual: "Use a casual, conversational tone"
+  technical: "Use precise technical terminology"
+  practical_usage: "Focus on practical usage of %s"
+  no_use: "Do not use %s"
+
+output:
+  bullets: "Use bullet points"
+  steps: "Use a step-by-step structure"
+  prose: "Use flowing prose paragraphs"
+  table: "Use a table format for comparison"
+  code: "Include code examples with comments"
+  howto: "Present the solution in a clear, sequential order"
+  explain: "Use clear section headings"
+  generate: "Present the output in a ready-to-use format"
+  analyze: "Structure findings with clear categories"
+  decide: "Present options side by side for easy comparison"
+  brief: "Keep sections brief"
+  fallback: "Use a clear and readable structure"
+
+quality:
+  clear: "Clear and structured"
+  accurate: "Accurate"
+  complete: "Complete and ready to use"
+  balanced: "Balanced and evidence-based"
+  fair: "Fair comparison of all options"

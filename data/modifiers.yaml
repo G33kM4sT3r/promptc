@@ -1,0 +1,63 @@
+audience:
+  beginners:
+    keywords:
+      en: [beginner, beginners, newbie, novice, starter, newcomer]
+      de: [anfänger, anfaenger, einsteiger, neuling]
+  intermediate:
+    keywords:
+      en: [intermediate, familiar, experienced]
+      de: [fortgeschritten, erfahren]
+  advanced:
+    keywords:
+      en: [advanced, expert, senior, professional]
+      de: [experte, profi, fortgeschrittene]
+
+depth:
+  short:
+    keywords:
+      en: [short, brief, concise, quick, summary, overview, tl;dr]
+      de: [kurz, knapp, überblick, ueberblick, zusammenfassung]
+  standard:
+    keywords:
+      en: [standard, normal, moderate]
+      de: [normal, mittel]
+  deep:
+    keywords:
+      en: [deep, detailed, thorough, comprehensive, in-depth, extensive]
+      de: [detailliert, ausführlich, ausfuehrlich, umfassend, tiefgehend, gründlich, gruendlich]
+
+style:
+  formal:
+    keywords:
+      en: [formal, academic, scientific, scholarly, professional]
+      de: [wissenschaftlich, formell, akademisch]
+  casual:
+    keywords:
+      en: [casual, informal, conversational, simple, friendly]
+      de: [locker, informell, einfach, umgangssprachlich]
+  technical:
+    keywords:
+      en: [technical, precise, specific, exact]
+      de: [technisch, präzise, praezise, spezifisch]
+
+format:
+  bullets:
+    keywords:
+      en: [bullets, bullet, list, points]
+      de: [liste, stichpunkte, aufzählung, aufzaehlung, punkte]
+  steps:
+    keywords:
+      en: [steps, step-by-step, walkthrough, tutorial, guide]
+      de: [schritte, schritt-für-schritt, anleitung]
+  prose:
+    keywords:
+      en: [prose, paragraph, essay, text, narrative]
+      de: [fließtext, fliesstext, absatz, text]
+  table:
+    keywords:
+      en: [table, comparison, matrix, grid]
+      de: [tabelle, vergleich, matrix]
+  code:
+    keywords:
+      en: [code, snippet, example, sample, implementation]
+      de: [code, beispiel, implementierung]

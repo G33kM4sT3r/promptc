@@ -1,0 +1,71 @@
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Go binaries and build output
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+/promptc
+bin/
+dist/
+
+# Go workspace files
+go.work
+go.work.sum
+
+# Dependency directories
+vendor/
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# fastText models
+data/lid.176.ftz
+data/*.bin
+
+# Debug files
+debug
+*.log
+
+# Test coverage
+coverage.out
+coverage.html
+*.coverprofile
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+_*
+
+# Build cache
+.cache/
+
+# Air live reload
+tmp/
+
+# Delve debugger
+__debug_bin
+__debug_bin*
+
+# Prompt history (runtime data)
+history.json
+
+# Git worktrees
+.worktrees/
+
+# Internal planning docs
+TODO.md
+docs/plans/

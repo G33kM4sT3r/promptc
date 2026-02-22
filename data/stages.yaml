@@ -1,0 +1,14 @@
+getting-started:
+  keywords:
+    en: [start, begin, getting-started, setup, initialize, init, bootstrap, new]
+    de: [beginnen, starten, anfangen, einrichten, initialisieren, neu]
+
+implementation:
+  keywords:
+    en: [implement, implementing, build, building, develop, developing, code, coding]
+    de: [umsetzen, implementieren, bauen, entwickeln, programmieren]
+
+optimization:
+  keywords:
+    en: [optimize, optimizing, improve, improving, performance, refactor, refactoring, tune, tuning, scale, scaling]
+    de: [optimieren, verbessern, performance, refactoring, skalieren]
