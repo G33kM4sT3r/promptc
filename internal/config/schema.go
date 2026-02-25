@@ -10,6 +10,7 @@ type Config struct {
 	Acronyms     AcronymsConfig            `yaml:"-"`
 	Contractions ContractionsConfig        `yaml:"-"`
 	Phrases      PhrasesConfig             `yaml:"-"`
+	Enrichments  EnrichmentsConfig         `yaml:"-"`
 }
 
 // ContractionsConfig holds contraction expansion mappings.
@@ -25,6 +26,17 @@ type AcronymsConfig struct {
 // PhrasesConfig holds known multi-word phrases per language for topic extraction.
 type PhrasesConfig struct {
 	Phrases map[string][]string `yaml:"phrases"`
+}
+
+// EnrichmentsConfig holds tier-based enrichment mappings.
+// Maps section → intent → tier → translation key(s).
+type EnrichmentsConfig struct {
+	Roles       map[string]map[string]string   `yaml:"roles"`       // intent → tier → key
+	Context     map[string]map[string][]string `yaml:"context"`     // intent → tier → keys
+	Scope       map[string]map[string][]string `yaml:"scope"`       // intent → tier → keys
+	Constraints map[string]map[string][]string `yaml:"constraints"` // intent → tier → keys
+	Output      map[string]map[string][]string `yaml:"output"`      // intent → tier → keys
+	Quality     map[string]map[string][]string `yaml:"quality"`     // intent → tier → keys
 }
 
 // IntentsConfig maps intent names to their detection patterns.

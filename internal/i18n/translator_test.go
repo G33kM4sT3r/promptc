@@ -3,6 +3,7 @@ package i18n
 import (
 	"os"
 	"path/filepath"
+	"sort"
 	"testing"
 )
 
@@ -231,38 +232,39 @@ objective:
 	}
 }
 
-func TestDETranslationCompleteness(t *testing.T) {
+func TestTranslationSymmetry(t *testing.T) {
 	dir := findProjectRoot(t)
-	trDir := filepath.Join(dir, "translations")
+	translationsDir := filepath.Join(dir, "translations")
 
-	en, err := Load(trDir, "en", "en")
+	en, err := loadTranslationFile(filepath.Join(translationsDir, "en.yaml"))
 	if err != nil {
-		t.Fatalf("Load EN: %v", err)
+		t.Fatalf("loading en.yaml: %v", err)
 	}
-	de, err := Load(trDir, "de", "en")
+	de, err := loadTranslationFile(filepath.Join(translationsDir, "de.yaml"))
 	if err != nil {
-		t.Fatalf("Load DE: %v", err)
+		t.Fatalf("loading de.yaml: %v", err)
 	}
 
-	keys := []string{
-		"labels.role", "labels.objective", "labels.context", "labels.scope",
-		"labels.constraints", "labels.output", "labels.quality",
-		"objective.explain", "objective.howto", "objective.generate",
-		"objective.analyze", "objective.decide", "objective.fallback",
-		"objective.fallback_topic",
-		"quality.clear", "quality.accurate", "quality.complete",
-		"quality.balanced", "quality.fair",
+	var missingInDe []string
+	for key := range en {
+		if _, ok := de[key]; !ok {
+			missingInDe = append(missingInDe, key)
+		}
 	}
-	for _, key := range keys {
-		enVal := en.Get(key)
-		deVal := de.Get(key)
-		if enVal == key {
-			t.Errorf("EN missing key %q", key)
-			continue
+	sort.Strings(missingInDe)
+	for _, key := range missingInDe {
+		t.Errorf("key %q exists in en.yaml but missing in de.yaml", key)
+	}
+
+	var missingInEn []string
+	for key := range de {
+		if _, ok := en[key]; !ok {
+			missingInEn = append(missingInEn, key)
 		}
-		if deVal == enVal {
-			t.Errorf("DE key %q falls back to EN (%q) — not translated", key, enVal)
-		}
+	}
+	sort.Strings(missingInEn)
+	for _, key := range missingInEn {
+		t.Errorf("key %q exists in de.yaml but missing in en.yaml", key)
 	}
 }
 

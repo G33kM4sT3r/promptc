@@ -8,6 +8,7 @@ Scope:
 
 Output:
 - Present options side by side for easy comparison
+- Use a structured comparison format
 
 Quality criteria:
 - Clear and structured

@@ -50,6 +50,13 @@ func Load(baseDir string) (*Config, error) {
 		cfg.Phrases = phrases
 	}
 
+	// Load enrichments (optional — don't error if missing)
+	var enrichments EnrichmentsConfig
+	enrichmentsPath := filepath.Join(baseDir, "data", "enrichments.yaml")
+	if err := loadYAML(enrichmentsPath, &enrichments); err == nil {
+		cfg.Enrichments = enrichments
+	}
+
 	// Load language files
 	langDir := filepath.Join(baseDir, "languages")
 	entries, err := os.ReadDir(langDir)

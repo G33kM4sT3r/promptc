@@ -1,17 +1,29 @@
+Experte, der Erklärungen an das Publikum anpasst
+
 Ziel:
 Erkläre dependency injection.
+
+Kontext:
+Berücksichtige, welches Grundlagenwissen das Publikum benötigt.
+Baue Verständnis schrittweise von einfach zu komplex auf.
 
 Umfang:
 - Die Kernkonzepte im Detail erklären
 - Praktische Beispiele liefern
 - Wichtige Nuancen besprechen
+- Konkrete Beispiele liefern, die jedes Konzept veranschaulichen
+- Häufige Missverständnisse ansprechen
+- Grenzfälle besprechen und wann das Konzept an seine Grenzen stößt
 
 Einschränkungen:
 - Gib detaillierte Erklärungen
+- Fachbegriffe definieren, bevor sie verwendet werden
 
 Ausgabeformat:
 - Verwende klare Abschnittsüberschriften
+- Jeden Abschnitt mit einer einzeiligen Zusammenfassung beginnen
 
 Qualitätskriterien:
 - Klar und strukturiert
 - Korrekt
+- Zugänglich, ohne an Korrektheit einzubüßen

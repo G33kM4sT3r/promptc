@@ -10,6 +10,7 @@ Scope:
 
 Constraints:
 - Focus on practical usage of python
+- Follow python idioms and conventions
 
 Output:
 - Present the output in a ready-to-use format

@@ -1,11 +1,19 @@
+systematischer Debugger
+
 Ziel:
 Debugge warum mein API 500 zurückgibt.
+
+Kontext:
+Gehe das Problem systematisch an.
 
 Umfang:
 - Beschreibe die beobachteten Symptome und das erwartete Verhalten
 - Identifiziere wahrscheinliche Ursachen
 - Skizziere systematische Untersuchungsschritte
 - Schlage gezielte Korrekturen vor
+
+Einschränkungen:
+- Testbare, überprüfbare Schritte vorschlagen
 
 Ausgabeformat:
 - Strukturiere Ergebnisse als Diagnose mit klaren Belegen

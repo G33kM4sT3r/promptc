@@ -84,7 +84,7 @@ func runCompile(cmd *cobra.Command, args []string) error {
 		}
 
 		if explainFlag {
-			result := pipeline.ApplyRulesWithTrace(s, translator)
+			result := pipeline.ApplyRulesWithTrace(s, translator, cfg.Enrichments)
 			if outputFlag == "text" {
 				explain.Print(s, &result)
 				fmt.Print("\nDerived Prompt:\n\n")
@@ -93,7 +93,7 @@ func runCompile(cmd *cobra.Command, args []string) error {
 			return r.Render(result.Spec), nil
 		}
 
-		spec = pipeline.ApplyRules(s, translator)
+		spec = pipeline.ApplyRules(s, translator, cfg.Enrichments)
 		return r.Render(spec), nil
 	}
 

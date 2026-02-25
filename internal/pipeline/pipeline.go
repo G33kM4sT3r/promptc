@@ -2,6 +2,7 @@ package pipeline
 
 import (
 	"errors"
+	"sort"
 	"strings"
 
 	"promptc/internal/config"
@@ -48,18 +49,19 @@ func Run(input string, cfg *config.Config, det *language.Detector) (slots.Slots,
 		Format:   ext.DetectFormat(tokens),
 	}
 	s.Topic = ext.CleanTopic(s.Topic)
+	s.Tier = extract.CalculateTier(s)
 	return s, nil
 }
 
 // ApplyRules applies the rule engine to pre-extracted slots.
-func ApplyRules(s slots.Slots, t *i18n.Translator) prompt.PromptSpec {
-	engine := newEngine()
+func ApplyRules(s slots.Slots, t *i18n.Translator, enrichments config.EnrichmentsConfig) prompt.PromptSpec {
+	engine := newEngine(enrichments)
 	return engine.Apply(s, t)
 }
 
 // ApplyRulesWithTrace applies the rule engine with tracing to pre-extracted slots.
-func ApplyRulesWithTrace(s slots.Slots, t *i18n.Translator) rules.ApplyResult {
-	engine := newEngine()
+func ApplyRulesWithTrace(s slots.Slots, t *i18n.Translator, enrichments config.EnrichmentsConfig) rules.ApplyResult {
+	engine := newEngine(enrichments)
 	return engine.ApplyWithTrace(s, t)
 }
 
@@ -71,7 +73,7 @@ func RunWithRules(input string, cfg *config.Config, t *i18n.Translator, det *lan
 		return s, prompt.PromptSpec{}, err
 	}
 
-	spec := ApplyRules(s, t)
+	spec := ApplyRules(s, t, cfg.Enrichments)
 	return s, spec, nil
 }
 
@@ -83,16 +85,23 @@ func RunWithTrace(input string, cfg *config.Config, t *i18n.Translator, det *lan
 		return s, rules.ApplyResult{}, err
 	}
 
-	result := ApplyRulesWithTrace(s, t)
+	result := ApplyRulesWithTrace(s, t, cfg.Enrichments)
 	return s, result, nil
 }
 
 // allPhrases merges per-language phrase lists into a single deduplicated list.
+// Keys are sorted to ensure deterministic output regardless of map iteration order.
 func allPhrases(m map[string][]string) []string {
+	keys := make([]string, 0, len(m))
+	for k := range m {
+		keys = append(keys, k)
+	}
+	sort.Strings(keys)
+
 	seen := make(map[string]bool)
 	var result []string
-	for _, phrases := range m {
-		for _, p := range phrases {
+	for _, k := range keys {
+		for _, p := range m[k] {
 			if !seen[p] {
 				seen[p] = true
 				result = append(result, p)
@@ -102,7 +111,7 @@ func allPhrases(m map[string][]string) []string {
 	return result
 }
 
-func newEngine() *rules.Engine {
+func newEngine(enrichments config.EnrichmentsConfig) *rules.Engine {
 	return rules.NewEngine([]rules.Rule{
 		builtin.ObjectiveRule(),
 		builtin.RoleFromEntitiesRule(),
@@ -142,5 +151,15 @@ func newEngine() *rules.Engine {
 		// Quality
 		builtin.QualityBaseRule(),
 		builtin.QualityFromIntentRule(),
+
+		// Tier enrichment
+		builtin.EnrichFromTierRule(enrichments),
+
+		// Cross-field interactions
+		builtin.CrossAudienceIntentRule(),
+		builtin.CrossEntityIntentRule(),
+		builtin.CrossStageDepthRule(),
+		builtin.CrossAudienceDepthRule(),
+		builtin.CrossStyleAudienceRule(),
 	})
 }

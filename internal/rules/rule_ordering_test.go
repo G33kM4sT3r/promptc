@@ -1,9 +1,11 @@
 package rules_test
 
 import (
+	"testing"
+
+	"promptc/internal/config"
 	"promptc/internal/rules"
 	"promptc/internal/rules/builtin"
-	"testing"
 )
 
 // canonicalRuleOrder returns the rules in the same order as pipeline.newEngine().
@@ -48,6 +50,16 @@ func canonicalRuleOrder() []rules.Rule {
 		// Quality
 		builtin.QualityBaseRule(),
 		builtin.QualityFromIntentRule(),
+
+		// Tier enrichment
+		builtin.EnrichFromTierRule(config.EnrichmentsConfig{}),
+
+		// Cross-field interactions
+		builtin.CrossAudienceIntentRule(),
+		builtin.CrossEntityIntentRule(),
+		builtin.CrossStageDepthRule(),
+		builtin.CrossAudienceDepthRule(),
+		builtin.CrossStyleAudienceRule(),
 	}
 }
 
@@ -60,9 +72,9 @@ func TestRuleOrderingConstraints(t *testing.T) {
 		position[r.ID] = i
 	}
 
-	// Verify we have exactly 25 rules
-	if len(ruleList) != 28 {
-		t.Fatalf("expected 28 canonical rules, got %d", len(ruleList))
+	// Verify we have exactly 34 rules
+	if len(ruleList) != 34 {
+		t.Fatalf("expected 34 canonical rules, got %d", len(ruleList))
 	}
 
 	// Define ordering constraints: {before, after, reason}
@@ -99,6 +111,19 @@ func TestRuleOrderingConstraints(t *testing.T) {
 
 		// Quality: base before intent-specific
 		{"quality.base", "quality.from_intent", "base quality before intent-specific quality"},
+
+		// Tier enrichment: after all base rules, before cross-field
+		{"quality.from_intent", "enrich.from_tier", "tier enrichment after all base rules"},
+
+		// Cross-field: after tier enrichment
+		{"enrich.from_tier", "cross.audience_intent", "cross-field after tier enrichment"},
+		{"enrich.from_tier", "cross.entity_intent", "cross-field after tier enrichment"},
+		{"enrich.from_tier", "cross.stage_depth", "cross-field after tier enrichment"},
+		{"enrich.from_tier", "cross.audience_depth", "cross-field after tier enrichment"},
+		{"enrich.from_tier", "cross.style_audience", "cross-field after tier enrichment"},
+
+		// Style guard must be last cross-field (modifies constraints set by others)
+		{"cross.audience_depth", "cross.style_audience", "style guard after depth conflict resolution"},
 	}
 
 	for _, c := range constraints {

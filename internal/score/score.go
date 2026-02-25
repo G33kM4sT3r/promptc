@@ -1,6 +1,10 @@
 package score
 
-import "promptc/internal/prompt"
+import (
+	"strings"
+
+	"promptc/internal/prompt"
+)
 
 // ScoreResult holds the total score and per-section breakdown.
 type ScoreResult struct {
@@ -22,6 +26,7 @@ func MaxWeights() map[string]int {
 }
 
 // Score evaluates a PromptSpec on completeness, returning 0-100.
+// List sections use partial credit based on item count.
 func Score(p prompt.PromptSpec) ScoreResult {
 	breakdown := map[string]int{}
 
@@ -31,20 +36,31 @@ func Score(p prompt.PromptSpec) ScoreResult {
 	if p.Objective != "" {
 		breakdown["objective"] = 25
 	}
+
+	// Context: 5 per line, capped at 15
 	if p.Context != "" {
-		breakdown["context"] = 15
+		lines := strings.Count(p.Context, "\n") + 1
+		breakdown["context"] = min(lines*5, 15)
 	}
+
+	// Scope: 5 per item, capped at 15
 	if len(p.Scope) > 0 {
-		breakdown["scope"] = 15
+		breakdown["scope"] = min(len(p.Scope)*5, 15)
 	}
+
+	// Constraints: 3 per item, capped at 10
 	if len(p.Constraints) > 0 {
-		breakdown["constraints"] = 10
+		breakdown["constraints"] = min(len(p.Constraints)*3, 10)
 	}
+
+	// Output: 5 per item, capped at 15
 	if len(p.OutputSpec) > 0 {
-		breakdown["output"] = 15
+		breakdown["output"] = min(len(p.OutputSpec)*5, 15)
 	}
+
+	// Quality: 3 per item, capped at 10
 	if len(p.QualityCriteria) > 0 {
-		breakdown["quality"] = 10
+		breakdown["quality"] = min(len(p.QualityCriteria)*3, 10)
 	}
 
 	total := 0

@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-02-25
+
+### Added
+- Tiered enrichment system: prompts automatically gain semantic depth (role, context, scope, constraints) based on input richness
+- Three enrichment tiers: minimal (base rules only), standard (moderate enrichments), rich (full enrichments across all sections)
+- Cross-field interaction rules that adapt output based on slot combinations (e.g., beginner × explain, advanced × deep)
+- Partial credit scoring: list sections score per-item instead of all-or-nothing
+- Full bidirectional translation symmetry validation for EN and DE
+
+### Changed
+- Richer prompt output for standard and rich tier inputs
+- Scoring reflects incremental completeness more accurately
+
+### Fixed
+- Non-deterministic phrase ordering that could cause subtle output variations across runs
+
 ## [1.1.0] - 2026-02-25
 
 ### Added

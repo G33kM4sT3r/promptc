@@ -122,3 +122,145 @@ quality:
   systematic: "Systematisch und gründlich"
   preserves_behavior: "Bewahrt bestehendes Verhalten"
   concise_summary: "Knapp aber umfassend"
+
+enrichment:
+  role:
+    explain:
+      standard: "sachkundiger Dozent"
+      rich: "Experte, der Erklärungen an das Publikum anpasst"
+    howto:
+      standard: "praktischer Ratgeber"
+      rich: "erfahrener Mentor, der häufige Fallstricke vorwegnimmt"
+    generate:
+      standard: "erfahrener Entwickler"
+      rich: "Senior-Entwickler mit Fokus auf produktionsreife Ausgabe"
+    analyze:
+      standard: "analytischer Gutachter"
+      rich: "Senior-Analyst mit systematischem Bewertungsansatz"
+    decide:
+      rich: "objektiver Berater, der Kompromisse fair abwägt"
+    debug:
+      standard: "systematischer Debugger"
+      rich: "erfahrener Ingenieur mit Expertise in Ursachenanalyse"
+    refactor:
+      standard: "Verfechter von Code-Qualität"
+      rich: "Senior-Architekt mit Fokus auf Wartbarkeit und Klarheit"
+    summarize:
+      standard: "präziser Kommunikator"
+  context:
+    explain:
+      standard:
+        approach: "Beginne mit dem Gesamtbild, bevor du ins Detail gehst."
+      rich:
+        foundations: "Berücksichtige, welches Grundlagenwissen das Publikum benötigt."
+        depth: "Baue Verständnis schrittweise von einfach zu komplex auf."
+    howto:
+      rich:
+        full_picture: "Berücksichtige den gesamten Lebenszyklus von der Einrichtung bis zur Wartung."
+    generate:
+      rich:
+        production: "Die Ausgabe sollte für eine Produktionsumgebung geeignet sein."
+    analyze:
+      rich:
+        systematic: "Wende ein systematisches Bewertungsframework an."
+    debug:
+      standard:
+        systematic: "Gehe das Problem systematisch an."
+      rich:
+        reproduction: "Zuverlässige Reproduktion ist die Grundlage effektiven Debuggens."
+        isolation: "Isoliere Variablen, um die Ursache einzugrenzen."
+    refactor:
+      rich:
+        preservation: "Bestehendes Verhalten muss während des Refactorings erhalten bleiben."
+    summarize:
+      rich:
+        audience: "Passe den Detailgrad an die Zielgruppe an."
+  scope:
+    explain:
+      standard:
+        analogy: "Verwende eine Analogie oder einen Vergleich aus der Praxis"
+      rich:
+        examples: "Konkrete Beispiele liefern, die jedes Konzept veranschaulichen"
+        misconceptions: "Häufige Missverständnisse ansprechen"
+        edge_cases: "Grenzfälle besprechen und wann das Konzept an seine Grenzen stößt"
+    howto:
+      rich:
+        validation: "Validierungsschritte einbeziehen, um den Fortschritt zu bestätigen"
+    generate:
+      rich:
+        error_handling: "Fehlerbehandlung für wahrscheinliche Fehlerfälle einbeziehen"
+        conventions: "Sprach- und Framework-Konventionen befolgen"
+    analyze:
+      rich:
+        metrics: "Quantitative Metriken einbeziehen, wo anwendbar"
+    debug:
+      rich:
+        reproduction: "Minimale Reproduktionsschritte einbeziehen"
+    refactor:
+      rich:
+        testing: "Testabdeckung vor und nach Änderungen sicherstellen"
+    decide:
+      rich:
+        criteria: "Jede Option anhand derselben Kriterien bewerten"
+    summarize:
+      rich:
+        hierarchy: "Informationen nach Wichtigkeit ordnen, nicht nach Reihenfolge der Quelle"
+  constraints:
+    explain:
+      rich:
+        define_terms: "Fachbegriffe definieren, bevor sie verwendet werden"
+    generate:
+      rich:
+        production_ready: "Sicherstellen, dass die Ausgabe Grenzfälle angemessen behandelt"
+    debug:
+      standard:
+        testable: "Testbare, überprüfbare Schritte vorschlagen"
+      rich:
+        evidence: "Jede Hypothese mit beobachtbaren Belegen untermauern"
+        no_assumptions: "Nicht die offensichtliche Ursache annehmen — systematisch verifizieren"
+    refactor:
+      rich:
+        incremental: "Inkrementelle Änderungen gegenüber Komplett-Umschreibungen bevorzugen"
+  output:
+    explain:
+      rich:
+        summary_lead: "Jeden Abschnitt mit einer einzeiligen Zusammenfassung beginnen"
+    decide:
+      standard:
+        table: "Ein strukturiertes Vergleichsformat verwenden"
+      rich:
+        matrix: "Eine Entscheidungsmatrix mit gewichteten Kriterien verwenden"
+        recommendation: "Mit einer klaren, begründeten Empfehlung abschließen"
+    debug:
+      rich:
+        evidence_chain: "Ergebnisse als Beweiskette von Symptom zu Ursache präsentieren"
+  quality:
+    explain:
+      rich:
+        accessible: "Zugänglich, ohne an Korrektheit einzubüßen"
+    debug:
+      rich:
+        reproducible: "Jeder Schritt sollte unabhängig reproduzierbar sein"
+    generate:
+      rich:
+        maintainable: "Wartbar und leicht erweiterbar"
+    refactor:
+      rich:
+        measurable: "Verbesserungen sollten messbar sein"
+
+cross:
+  beginner_explain_scope: "Beginne mit dem Gesamtbild, bevor du ins Detail gehst"
+  beginner_generate_constraint: "Füge Inline-Kommentare ein, die jeden Abschnitt erklären"
+  beginner_debug_scope: "Erkläre die Begründung hinter jedem Untersuchungsschritt"
+  advanced_analyze_scope: "Quantitative Metriken einbeziehen, wo anwendbar"
+  advanced_generate_constraint: "Für Leistung und idiomatische Muster optimieren"
+  medium_generate_constraint: "Befolge %s-Idiome und -Konventionen"
+  medium_debug_scope: "Berücksichtige %s-spezifische häufige Fehlermodi"
+  medium_explain_scope: "Veranschauliche mit %s-Codebeispielen"
+  multi_entity_decide_scope: "Jede Option anhand derselben Kriterien bewerten"
+  gs_deep_context: "Biete ein gründliches Fundament für langfristiges Verständnis."
+  impl_short_constraint: "Fokussiere nur auf den nächsten unmittelbaren Schritt"
+  opt_deep_scope: "Benchmarking-Methodik einbeziehen"
+  beginner_deep_context: "Tiefe bieten und gleichzeitig Zugänglichkeit wahren."
+  advanced_short_constraint: "Sei knapp, aber setze vollständiges technisches Hintergrundwissen voraus"
+  beginner_technical_constraint: "Fachbegriffe definieren, bevor sie verwendet werden"

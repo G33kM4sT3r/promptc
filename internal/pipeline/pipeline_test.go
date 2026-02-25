@@ -142,7 +142,8 @@ func TestApplyRulesViaEngine(t *testing.T) {
 		Topic:    "closures",
 		Audience: "beginners",
 	}
-	spec := ApplyRules(s, translator)
+	cfg := loadTestConfig(t)
+	spec := ApplyRules(s, translator, cfg.Enrichments)
 	if spec.Objective == "" {
 		t.Error("Objective should not be empty")
 	}
@@ -156,8 +157,9 @@ func TestApplyRulesViaEngine(t *testing.T) {
 
 func TestApplyRulesWithTraceViaEngine(t *testing.T) {
 	translator := loadTestTranslator(t, "en")
+	cfg := loadTestConfig(t)
 	s := slots.Slots{Intent: "generate", Topic: "REST API"}
-	result := ApplyRulesWithTrace(s, translator)
+	result := ApplyRulesWithTrace(s, translator, cfg.Enrichments)
 	if result.Spec.Objective == "" {
 		t.Error("Objective should not be empty")
 	}
@@ -245,11 +247,14 @@ func TestAllIntentsProduceOutput(t *testing.T) {
 	cfg := loadTestConfig(t)
 	translator := loadTestTranslator(t, "en")
 	inputs := map[string]string{
-		"explain":  "explain closures",
-		"howto":    "how do I start a project",
-		"generate": "generate a REST API",
-		"analyze":  "analyze this code",
-		"decide":   "should I use React or Vue",
+		"explain":   "explain closures",
+		"howto":     "how do I start a project",
+		"generate":  "generate a REST API",
+		"analyze":   "analyze this code",
+		"decide":    "should I use React or Vue",
+		"debug":     "debug why my API returns 500",
+		"refactor":  "refactor this function for readability",
+		"summarize": "summarize microservices architecture",
 	}
 	for intent, input := range inputs {
 		t.Run(intent, func(t *testing.T) {
@@ -264,6 +269,42 @@ func TestAllIntentsProduceOutput(t *testing.T) {
 				t.Error("QualityCriteria should not be empty")
 			}
 		})
+	}
+}
+
+func TestRunCalculatesTier(t *testing.T) {
+	cfg := loadTestConfig(t)
+	s, err := Run("explain closures for beginners", cfg, nil)
+	if err != nil {
+		t.Fatalf("Run() error: %v", err)
+	}
+	if s.Tier == "" {
+		t.Error("Tier should not be empty after Run()")
+	}
+	if s.Tier != "standard" {
+		t.Errorf("Tier = %q, want %q (beginners = standard)", s.Tier, "standard")
+	}
+}
+
+func TestRunTierDeep(t *testing.T) {
+	cfg := loadTestConfig(t)
+	s, err := Run("explain closures in-depth", cfg, nil)
+	if err != nil {
+		t.Fatalf("Run() error: %v", err)
+	}
+	if s.Tier != "rich" {
+		t.Errorf("Tier = %q, want %q (deep = rich)", s.Tier, "rich")
+	}
+}
+
+func TestRunTierShort(t *testing.T) {
+	cfg := loadTestConfig(t)
+	s, err := Run("explain closures brief", cfg, nil)
+	if err != nil {
+		t.Fatalf("Run() error: %v", err)
+	}
+	if s.Tier != "minimal" {
+		t.Errorf("Tier = %q, want %q (short = minimal)", s.Tier, "minimal")
 	}
 }
 

@@ -13,6 +13,7 @@ type Slots struct {
 	Depth    string
 	Style    string
 	Format   string
+	Tier     string
 }
 
 type Entity struct {

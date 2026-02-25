@@ -268,7 +268,7 @@ func (m model) processInput(input string) (string, string, error) {
 	var rendered string
 
 	if m.explainOn {
-		result := pipeline.ApplyRulesWithTrace(s, translator)
+		result := pipeline.ApplyRulesWithTrace(s, translator, m.cfg.Enrichments)
 		spec = result.Spec
 		rendered = m.renderSpec(result.Spec, translator)
 		if m.outputFmt == "text" {
@@ -276,7 +276,7 @@ func (m model) processInput(input string) (string, string, error) {
 			rendered = rendered + "\n" + trace
 		}
 	} else {
-		spec = pipeline.ApplyRules(s, translator)
+		spec = pipeline.ApplyRules(s, translator, m.cfg.Enrichments)
 		rendered = m.renderSpec(spec, translator)
 	}
 

@@ -1,14 +1,21 @@
+senior architect focused on maintainability and clarity
+
 Objective:
 Refactor this function.
 
 Context:
 The user is looking to improve an existing solution. The target domain is readability.
+Existing behavior must be preserved throughout the refactoring.
 
 Scope:
 - Identify current structural problems
 - Propose a refactoring approach
 - Describe the expected before and after state
 - Highlight risks and mitigation strategies
+- Ensure test coverage before and after changes
+
+Constraints:
+- Prefer incremental changes over big-bang rewrites
 
 Output:
 - Show before/after comparisons
@@ -17,3 +24,4 @@ Quality criteria:
 - Clear and structured
 - Accurate
 - Preserves existing behavior
+- Improvements should be measurable

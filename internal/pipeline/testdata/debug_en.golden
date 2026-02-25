@@ -1,11 +1,19 @@
+systematic debugger
+
 Objective:
 Debug why my API returns 500.
+
+Context:
+Approach the problem systematically.
 
 Scope:
 - Describe the observed symptoms and expected behavior
 - Identify likely root causes
 - Outline systematic investigation steps
 - Suggest targeted fixes
+
+Constraints:
+- Suggest testable, verifiable steps
 
 Output:
 - Structure findings as diagnosis with clear evidence

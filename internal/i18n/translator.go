@@ -74,19 +74,31 @@ func loadTranslationFile(path string) (map[string]string, error) {
 		return nil, err
 	}
 
-	// Parse as nested map
-	var raw map[string]map[string]string
+	// Parse as generic nested map
+	var raw map[string]any
 	if err := yaml.Unmarshal(data, &raw); err != nil {
 		return nil, fmt.Errorf("parsing %s: %w", path, err)
 	}
 
-	// Flatten to "section.key" → value
+	// Flatten to dot-separated keys (e.g., "enrichment.role.explain.standard" → value)
 	flat := make(map[string]string)
-	for section, entries := range raw {
-		for key, value := range entries {
-			flat[section+"."+key] = value
-		}
-	}
+	flattenMap("", raw, flat)
 
 	return flat, nil
+}
+
+// flattenMap recursively flattens a nested map into dot-separated key-value pairs.
+func flattenMap(prefix string, m map[string]any, out map[string]string) {
+	for key, value := range m {
+		fullKey := key
+		if prefix != "" {
+			fullKey = prefix + "." + key
+		}
+		switch v := value.(type) {
+		case string:
+			out[fullKey] = v
+		case map[string]any:
+			flattenMap(fullKey, v, out)
+		}
+	}
 }

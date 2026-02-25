@@ -1,0 +1,128 @@
+roles:
+  explain:
+    standard: "enrichment.role.explain.standard"
+    rich: "enrichment.role.explain.rich"
+  howto:
+    standard: "enrichment.role.howto.standard"
+    rich: "enrichment.role.howto.rich"
+  generate:
+    standard: "enrichment.role.generate.standard"
+    rich: "enrichment.role.generate.rich"
+  analyze:
+    standard: "enrichment.role.analyze.standard"
+    rich: "enrichment.role.analyze.rich"
+  decide:
+    rich: "enrichment.role.decide.rich"
+  debug:
+    standard: "enrichment.role.debug.standard"
+    rich: "enrichment.role.debug.rich"
+  refactor:
+    standard: "enrichment.role.refactor.standard"
+    rich: "enrichment.role.refactor.rich"
+  summarize:
+    standard: "enrichment.role.summarize.standard"
+
+context:
+  explain:
+    standard:
+      - "enrichment.context.explain.standard.approach"
+    rich:
+      - "enrichment.context.explain.rich.foundations"
+      - "enrichment.context.explain.rich.depth"
+  howto:
+    rich:
+      - "enrichment.context.howto.rich.full_picture"
+  generate:
+    rich:
+      - "enrichment.context.generate.rich.production"
+  analyze:
+    rich:
+      - "enrichment.context.analyze.rich.systematic"
+  debug:
+    standard:
+      - "enrichment.context.debug.standard.systematic"
+    rich:
+      - "enrichment.context.debug.rich.reproduction"
+      - "enrichment.context.debug.rich.isolation"
+  refactor:
+    rich:
+      - "enrichment.context.refactor.rich.preservation"
+  summarize:
+    rich:
+      - "enrichment.context.summarize.rich.audience"
+
+scope:
+  explain:
+    standard:
+      - "enrichment.scope.explain.standard.analogy"
+    rich:
+      - "enrichment.scope.explain.rich.examples"
+      - "enrichment.scope.explain.rich.misconceptions"
+      - "enrichment.scope.explain.rich.edge_cases"
+  howto:
+    rich:
+      - "enrichment.scope.howto.rich.validation"
+  generate:
+    rich:
+      - "enrichment.scope.generate.rich.error_handling"
+      - "enrichment.scope.generate.rich.conventions"
+  analyze:
+    rich:
+      - "enrichment.scope.analyze.rich.metrics"
+  debug:
+    rich:
+      - "enrichment.scope.debug.rich.reproduction"
+  refactor:
+    rich:
+      - "enrichment.scope.refactor.rich.testing"
+  decide:
+    rich:
+      - "enrichment.scope.decide.rich.criteria"
+  summarize:
+    rich:
+      - "enrichment.scope.summarize.rich.hierarchy"
+
+constraints:
+  explain:
+    rich:
+      - "enrichment.constraints.explain.rich.define_terms"
+  generate:
+    rich:
+      - "enrichment.constraints.generate.rich.production_ready"
+  debug:
+    standard:
+      - "enrichment.constraints.debug.standard.testable"
+    rich:
+      - "enrichment.constraints.debug.rich.evidence"
+      - "enrichment.constraints.debug.rich.no_assumptions"
+  refactor:
+    rich:
+      - "enrichment.constraints.refactor.rich.incremental"
+
+output:
+  explain:
+    rich:
+      - "enrichment.output.explain.rich.summary_lead"
+  decide:
+    standard:
+      - "enrichment.output.decide.standard.table"
+    rich:
+      - "enrichment.output.decide.rich.matrix"
+      - "enrichment.output.decide.rich.recommendation"
+  debug:
+    rich:
+      - "enrichment.output.debug.rich.evidence_chain"
+
+quality:
+  explain:
+    rich:
+      - "enrichment.quality.explain.rich.accessible"
+  debug:
+    rich:
+      - "enrichment.quality.debug.rich.reproducible"
+  generate:
+    rich:
+      - "enrichment.quality.generate.rich.maintainable"
+  refactor:
+    rich:
+      - "enrichment.quality.refactor.rich.measurable"

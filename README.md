@@ -33,15 +33,20 @@ promptc compile "explain closures for beginners"
 Output:
 
 ```
+knowledgeable instructor
+
 Objective:
 Explain closures.
 
 Context:
 The explanation should be beginner-friendly.
+Start with the big picture before diving into details.
 
 Scope:
 - Explain the main concept
 - Cover the most important aspects
+- Use an analogy or real-world comparison to build intuition
+- Start with the big picture before details
 
 Constraints:
 - Use simple and clear language
@@ -115,23 +120,35 @@ promptc compile "erkläre dependency injection detailliert"
 Output:
 
 ```
+Experte, der Erklärungen an das Publikum anpasst
+
 Ziel:
 Erkläre dependency injection.
+
+Kontext:
+Berücksichtige, welches Grundlagenwissen das Publikum benötigt.
+Baue Verständnis schrittweise von einfach zu komplex auf.
 
 Umfang:
 - Die Kernkonzepte im Detail erklären
 - Praktische Beispiele liefern
 - Wichtige Nuancen besprechen
+- Konkrete Beispiele liefern, die jedes Konzept veranschaulichen
+- Häufige Missverständnisse ansprechen
+- Grenzfälle besprechen und wann das Konzept an seine Grenzen stößt
 
 Einschränkungen:
 - Gib detaillierte Erklärungen
+- Fachbegriffe definieren, bevor sie verwendet werden
 
 Ausgabeformat:
 - Verwende klare Abschnittsüberschriften
+- Jeden Abschnitt mit einer einzeiligen Zusammenfassung beginnen
 
 Qualitätskriterien:
 - Klar und strukturiert
 - Korrekt
+- Zugänglich, ohne an Korrektheit einzubüßen
 ```
 
 ### Interactive Mode
@@ -221,11 +238,11 @@ Input → Normalize → Tokenize (phrase → boundary → split) → Detect Lang
 
 **Language Detection** uses fastText (`data/lid.176.ftz`) when available, falling back to keyword-score heuristics. The `--lang` (`-l`) flag overrides detection entirely.
 
-**Extraction** identifies intent (`explain`, `howto`, `generate`, `analyze`, `decide`, `debug`, `refactor`, `summarize`), topic, entities (e.g., "with PHP" as implementation medium), stage (`getting-started`, `implementation`, `optimization`), and modifiers (audience, depth, style, format) using config-driven lookups with phrase and keyword matching.
+**Extraction** identifies intent (`explain`, `howto`, `generate`, `analyze`, `decide`, `debug`, `refactor`, `summarize`), topic, entities (e.g., "with PHP" as implementation medium), stage (`getting-started`, `implementation`, `optimization`), and modifiers (audience, depth, style, format) using config-driven lookups with phrase and keyword matching. A **tier** (`minimal`, `standard`, or `rich`) is then computed from slot richness (depth, audience, entity count, stage).
 
 **Topic Cleanup** strips leading articles ("a", "the", "an", "die", "der", "das") and normalizes known acronyms to their canonical casing (`data/acronyms.yaml`).
 
-**Rules** (28 built-in) transform extracted slots into a structured `PromptSpec` — encoding prompt engineering best practices as composable, order-aware functions. Each rule accepts a `Translator` to produce language-appropriate text.
+**Rules** (34 built-in) transform extracted slots into a structured `PromptSpec` — encoding prompt engineering best practices as composable, order-aware functions. Each rule accepts a `Translator` to produce language-appropriate text. Tier-based enrichment rules add semantic depth (role, context, scope, constraints) based on the input's richness, and cross-field interaction rules handle slot combinations like audience×intent or stage×depth.
 
 **Rendering** formats the spec into text, JSON, or YAML. The `TranslatedRenderer` looks up section labels (`Objective:`, `Ziel:`, etc.) from the active translation file. JSON and YAML renderers serialize the spec directly for machine consumption.
 
@@ -235,6 +252,7 @@ Input → Normalize → Tokenize (phrase → boundary → split) → Detect Lang
 - **Languages** — add a new `translations/<lang>.yaml` file with translated label and rule strings
 - **Rules** — add to `internal/rules/builtin/` and register in the pipeline
 - **Acronyms** — add to `data/acronyms.yaml` for canonical casing in topics
+- **Enrichments** — edit `data/enrichments.yaml` to add tier-based content per intent/section; actual text lives in `translations/*.yaml` under `enrichment.*` and `cross.*` namespaces
 
 ## Design Principles
 
