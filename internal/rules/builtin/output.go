@@ -48,6 +48,12 @@ func OutputFromIntentRule() rules.Rule {
 				p.OutputSpec = append(p.OutputSpec, t.Get("output.analyze"))
 			case "decide":
 				p.OutputSpec = append(p.OutputSpec, t.Get("output.decide"))
+			case "debug":
+				p.OutputSpec = append(p.OutputSpec, t.Get("output.debug"))
+			case "refactor":
+				p.OutputSpec = append(p.OutputSpec, t.Get("output.refactor"))
+			case "summarize":
+				p.OutputSpec = append(p.OutputSpec, t.Get("output.summarize"))
 			}
 		},
 	}

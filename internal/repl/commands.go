@@ -16,6 +16,7 @@ const (
 	cmdHistory
 	cmdRecall
 	cmdCopy
+	cmdSearch
 	cmdUnknown
 )
 
@@ -57,6 +58,8 @@ func parseCommand(input string) command {
 		return command{typ: cmdRecall, args: args}
 	case ":copy":
 		return command{typ: cmdCopy}
+	case ":search":
+		return command{typ: cmdSearch, args: args}
 	default:
 		return command{typ: cmdUnknown, args: input}
 	}
@@ -74,6 +77,7 @@ func helpText() string {
 		"  " + stylePrompt.Render(":output <fmt>") + styleDim.Render("       Set output format (text, json, yaml)"),
 		"  " + stylePrompt.Render(":history") + styleDim.Render("           Show recent history"),
 		"  " + stylePrompt.Render(":recall <N>") + styleDim.Render("        Recall history entry by index"),
+		"  " + stylePrompt.Render(":search <term>") + styleDim.Render("     Search history by input text"),
 		"  " + stylePrompt.Render(":copy") + styleDim.Render("              Copy last output to clipboard"),
 		"  " + stylePrompt.Render(":quit, :q, :exit") + styleDim.Render("   Exit the REPL"),
 		"",

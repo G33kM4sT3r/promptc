@@ -54,6 +54,14 @@ func runBinary(args ...string) (string, error) {
 	return string(out), err
 }
 
+func runBinaryWithStdin(stdin string, args ...string) (string, error) {
+	cmd := exec.Command(binaryPath, args...)
+	cmd.Stdin = strings.NewReader(stdin)
+	cmd.Env = append(os.Environ(), "NO_COLOR=1", "PROMPTC_DATA="+projectRoot)
+	out, err := cmd.CombinedOutput()
+	return string(out), err
+}
+
 func TestRootCommand_ShowsWelcome(t *testing.T) {
 	out, err := runBinary()
 	if err != nil {

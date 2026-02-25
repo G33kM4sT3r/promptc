@@ -17,3 +17,12 @@ func (r *JSONRenderer) Render(p prompt.PromptSpec) string {
 	}
 	return string(b)
 }
+
+// RenderScore marshals a ScoreBreakdown to pretty-printed JSON.
+func (r *JSONRenderer) RenderScore(sb ScoreBreakdown) string {
+	b, err := json.MarshalIndent(sb, "", "  ")
+	if err != nil {
+		return "{}"
+	}
+	return string(b)
+}

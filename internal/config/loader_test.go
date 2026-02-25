@@ -16,10 +16,10 @@ func TestLoad(t *testing.T) {
 	}
 
 	// Verify intents loaded
-	if len(cfg.Intents.Intents) != 5 {
-		t.Errorf("expected 5 intents, got %d", len(cfg.Intents.Intents))
+	if len(cfg.Intents.Intents) != 8 {
+		t.Errorf("expected 8 intents, got %d", len(cfg.Intents.Intents))
 	}
-	for _, name := range []string{"explain", "howto", "generate", "analyze", "decide"} {
+	for _, name := range []string{"explain", "howto", "generate", "analyze", "decide", "debug", "refactor", "summarize"} {
 		if _, ok := cfg.Intents.Intents[name]; !ok {
 			t.Errorf("missing intent %q", name)
 		}
@@ -287,6 +287,41 @@ func TestLoad_LanguageWithoutCode(t *testing.T) {
 	}
 	if _, ok := cfg.Languages["fr"]; !ok {
 		t.Error("expected 'fr' language derived from filename")
+	}
+}
+
+func TestLoadPhrases(t *testing.T) {
+	baseDir := findProjectRoot(t)
+	cfg, err := Load(baseDir)
+	if err != nil {
+		t.Fatalf("Load() error: %v", err)
+	}
+	if len(cfg.Phrases.Phrases) == 0 {
+		t.Error("expected phrases to be loaded")
+	}
+	if len(cfg.Phrases.Phrases["en"]) == 0 {
+		t.Error("expected English phrases")
+	}
+	if len(cfg.Phrases.Phrases["de"]) == 0 {
+		t.Error("expected German phrases")
+	}
+	found := false
+	for _, p := range cfg.Phrases.Phrases["en"] {
+		if p == "machine learning" {
+			found = true
+		}
+	}
+	if !found {
+		t.Error("expected 'machine learning' in English phrases")
+	}
+	found = false
+	for _, p := range cfg.Phrases.Phrases["de"] {
+		if p == "maschinelles lernen" {
+			found = true
+		}
+	}
+	if !found {
+		t.Error("expected 'maschinelles lernen' in German phrases")
 	}
 }
 

@@ -30,6 +30,12 @@ func ObjectiveRule() rules.Rule {
 				p.Objective = t.Getf("objective.analyze", topic)
 			case "decide":
 				p.Objective = t.Getf("objective.decide", topic)
+			case "debug":
+				p.Objective = t.Getf("objective.debug", topic)
+			case "refactor":
+				p.Objective = t.Getf("objective.refactor", topic)
+			case "summarize":
+				p.Objective = t.Getf("objective.summarize", topic)
 			default:
 				p.Objective = t.Get("objective.fallback")
 			}

@@ -36,6 +36,12 @@ func QualityFromIntentRule() rules.Rule {
 				p.QualityCriteria = append(p.QualityCriteria, t.Get("quality.balanced"))
 			case "decide":
 				p.QualityCriteria = append(p.QualityCriteria, t.Get("quality.fair"))
+			case "debug":
+				p.QualityCriteria = append(p.QualityCriteria, t.Get("quality.systematic"))
+			case "refactor":
+				p.QualityCriteria = append(p.QualityCriteria, t.Get("quality.preserves_behavior"))
+			case "summarize":
+				p.QualityCriteria = append(p.QualityCriteria, t.Get("quality.concise_summary"))
 			}
 		},
 	}

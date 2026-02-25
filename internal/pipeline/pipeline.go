@@ -32,7 +32,7 @@ func Run(input string, cfg *config.Config, det *language.Detector) (slots.Slots,
 	}
 
 	norm := normalize.NormalizeAll(input, cfg.Contractions.Contractions)
-	tokens := tokenize.Tokenize(norm)
+	tokens := tokenize.TokenizeWithPhrases(norm, allPhrases(cfg.Phrases.Phrases))
 
 	ext := extract.New(cfg)
 
@@ -87,6 +87,21 @@ func RunWithTrace(input string, cfg *config.Config, t *i18n.Translator, det *lan
 	return s, result, nil
 }
 
+// allPhrases merges per-language phrase lists into a single deduplicated list.
+func allPhrases(m map[string][]string) []string {
+	seen := make(map[string]bool)
+	var result []string
+	for _, phrases := range m {
+		for _, p := range phrases {
+			if !seen[p] {
+				seen[p] = true
+				result = append(result, p)
+			}
+		}
+	}
+	return result
+}
+
 func newEngine() *rules.Engine {
 	return rules.NewEngine([]rules.Rule{
 		builtin.ObjectiveRule(),
@@ -105,6 +120,9 @@ func newEngine() *rules.Engine {
 		builtin.ScopeGenerateRule(),
 		builtin.ScopeAnalyzeRule(),
 		builtin.ScopeDecideRule(),
+		builtin.ScopeDebugRule(),
+		builtin.ScopeRefactorRule(),
+		builtin.ScopeSummarizeRule(),
 		builtin.ScopeFromExampleObjectRule(),
 		builtin.ScopeFallbackRule(),
 

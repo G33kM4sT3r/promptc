@@ -1,0 +1,334 @@
+phrases:
+  en:
+    # Programming concepts
+    - machine learning
+    - deep learning
+    - natural language processing
+    - error handling
+    - dependency injection
+    - design patterns
+    - clean architecture
+    - test driven development
+    - continuous integration
+    - continuous deployment
+    - version control
+    - pull request
+    - code review
+    - data structures
+    - binary search
+    - linked list
+    - hash map
+    - hash table
+    - binary tree
+    - search tree
+    - graph traversal
+    - dynamic programming
+    - time complexity
+    - space complexity
+    - big o notation
+    - REST API
+    - web application
+    - command line
+    - open source
+    - object oriented programming
+    - functional programming
+    - reactive programming
+    - event driven architecture
+    - message queue
+    - load balancer
+    - reverse proxy
+    - web server
+    - web socket
+    - server side rendering
+    - client side rendering
+    - single page application
+    - progressive web app
+    - static site generator
+    # Software engineering
+    - unit test
+    - integration test
+    - end to end test
+    - acceptance test
+    - regression test
+    - load test
+    - stress test
+    - smoke test
+    - code coverage
+    - technical debt
+    - code smell
+    - dead code
+    - feature flag
+    - blue green deployment
+    - canary deployment
+    - rolling update
+    - service mesh
+    - circuit breaker
+    - rate limiter
+    - retry logic
+    # Architecture & infrastructure
+    - microservices architecture
+    - monolithic architecture
+    - serverless architecture
+    - clean code
+    - domain driven design
+    - hexagonal architecture
+    - layered architecture
+    - event sourcing
+    - command query responsibility segregation
+    - infrastructure as code
+    - container orchestration
+    - service discovery
+    - api gateway
+    - message broker
+    - content delivery network
+    - virtual machine
+    - container runtime
+    # Database & data
+    - database schema
+    - database migration
+    - connection pool
+    - query optimization
+    - full text search
+    - data pipeline
+    - data warehouse
+    - data lake
+    - batch processing
+    - stream processing
+    - real time processing
+    - cache invalidation
+    - eventual consistency
+    - strong consistency
+    - acid transactions
+    - base transactions
+    - primary key
+    - foreign key
+    - composite key
+    - index scan
+    - table scan
+    # Security
+    - access control
+    - role based access control
+    - attribute based access control
+    - cross site scripting
+    - sql injection
+    - cross site request forgery
+    - man in the middle
+    - denial of service
+    - public key infrastructure
+    - certificate authority
+    - two factor authentication
+    - multi factor authentication
+    - single sign on
+    - json web token
+    - oauth flow
+    - api key
+    - encryption at rest
+    - encryption in transit
+    - zero trust
+    # DevOps & cloud
+    - build pipeline
+    - deployment pipeline
+    - auto scaling
+    - health check
+    - log aggregation
+    - distributed tracing
+    - chaos engineering
+    - site reliability engineering
+    - incident response
+    - post mortem
+    - run book
+    - on call rotation
+    - mean time to recovery
+    - service level agreement
+    - service level objective
+    - service level indicator
+    - infrastructure monitoring
+    - application monitoring
+    # AI & ML
+    - neural network
+    - convolutional neural network
+    - recurrent neural network
+    - transformer model
+    - attention mechanism
+    - transfer learning
+    - reinforcement learning
+    - supervised learning
+    - unsupervised learning
+    - feature engineering
+    - model training
+    - model inference
+    - gradient descent
+    - loss function
+    - activation function
+    - batch normalization
+    - dropout regularization
+    - hyperparameter tuning
+    - cross validation
+    - confusion matrix
+    - precision recall
+    - large language model
+    - prompt engineering
+    - retrieval augmented generation
+    - fine tuning
+    - embedding model
+    - vector database
+    # Web development
+    - web component
+    - shadow dom
+    - virtual dom
+    - state management
+    - form validation
+    - input sanitization
+    - responsive design
+    - mobile first
+    - dark mode
+    - accessibility audit
+    - screen reader
+    - keyboard navigation
+    - color contrast
+    - semantic html
+    - css grid
+    - css flexbox
+    - media query
+    - animation framework
+    - build tool
+    - package manager
+    - module bundler
+    - hot module replacement
+    - tree shaking
+    - code splitting
+    - lazy loading
+    - infinite scroll
+    # Networking
+    - ip address
+    - domain name system
+    - network protocol
+    - tcp connection
+    - udp protocol
+    - http request
+    - http response
+    - status code
+    - request header
+    - response header
+    - content type
+    - cors policy
+    - network latency
+    - bandwidth throttling
+    - packet loss
+    - network partition
+    - split brain
+    # General computing
+    - operating system
+    - file system
+    - memory management
+    - garbage collection
+    - reference counting
+    - thread pool
+    - process management
+    - context switching
+    - race condition
+    - dead lock
+    - memory leak
+    - buffer overflow
+    - stack overflow
+    - heap allocation
+    - cpu cache
+    - instruction pipeline
+    - branch prediction
+    - virtual memory
+    - page fault
+    - system call
+    # Collaboration & process
+    - code repository
+    - branch strategy
+    - merge conflict
+    - cherry pick
+    - git rebase
+    - git bisect
+    - release notes
+    - semantic versioning
+    - breaking change
+    - backward compatibility
+    - forward compatibility
+    - feature branch
+    - release branch
+    - hot fix
+    - pair programming
+    - mob programming
+    - stand up meeting
+    - sprint planning
+    - sprint retrospective
+    - backlog refinement
+    - story points
+    - acceptance criteria
+    - definition of done
+  de:
+    # Programmierkonzepte
+    - maschinelles lernen
+    - tiefes lernen
+    - natürliche sprachverarbeitung
+    - fehler behandlung
+    - abhängigkeitsinjektion
+    - entwurfs muster
+    - saubere architektur
+    - testgetriebene entwicklung
+    - kontinuierliche integration
+    - kontinuierliche auslieferung
+    - versions verwaltung
+    - daten strukturen
+    - binäre suche
+    - verkettete liste
+    - dynamische programmierung
+    - objektorientierte programmierung
+    - funktionale programmierung
+    - reaktive programmierung
+    - ereignisgesteuerte architektur
+    - nachrichtenwarteschlange
+    - verteilte systeme
+    # Softwaretechnik
+    - technische schulden
+    - quellcode abdeckung
+    - tote code
+    # Architektur & Infrastruktur
+    - sauberer code
+    - domänengetriebenes design
+    - schichten architektur
+    - virtuelle maschine
+    - infrastruktur als code
+    # Datenbank & Daten
+    - datenbank schema
+    - datenbank migration
+    - stapel verarbeitung
+    - echtzeit verarbeitung
+    - volltext suche
+    # Sicherheit
+    - zugriffs kontrolle
+    - zwei faktor authentifizierung
+    - öffentliche schlüssel infrastruktur
+    - dienstverweigerung
+    # DevOps & Cloud
+    - automatische skalierung
+    - verteilte verfolgung
+    # KI & ML
+    - neuronales netz
+    - neuronales netzwerk
+    - bestärkendes lernen
+    - überwachtes lernen
+    - unüberwachtes lernen
+    - transfer lernen
+    - großes sprachmodell
+    # Webentwicklung
+    - barrierefreies design
+    # Netzwerk
+    - netzwerk protokoll
+    - netzwerk latenz
+    # Allgemeine Informatik
+    - betriebs system
+    - datei system
+    - speicher verwaltung
+    - speicher leck
+    - puffer überlauf
+    - virtueller speicher
+    # Zusammenarbeit & Prozess
+    - semantische versionierung
+    - zusammenführungs konflikt

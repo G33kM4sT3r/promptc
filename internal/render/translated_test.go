@@ -110,3 +110,24 @@ func TestTranslatedRendererEmptySpec(t *testing.T) {
 		t.Errorf("expected empty output for empty spec, got %q", result)
 	}
 }
+
+func TestTranslatedRendererRenderScore(t *testing.T) {
+	translator, err := i18n.Load(translationsDir(), "en", "en")
+	if err != nil {
+		t.Fatalf("failed to load translations: %v", err)
+	}
+
+	r := NewTranslated(translator)
+	sb := ScoreBreakdown{
+		Total:      65,
+		Breakdown:  map[string]int{"objective": 25, "scope": 15, "output": 15, "quality": 10},
+		MaxWeights: map[string]int{"role": 10, "objective": 25, "context": 15, "scope": 15, "constraints": 10, "output": 15, "quality": 10},
+	}
+	result := r.RenderScore(sb)
+
+	for _, check := range []string{"Score: 65/100", "objective", "scope", "quality"} {
+		if !strings.Contains(result, check) {
+			t.Errorf("score output missing %q", check)
+		}
+	}
+}

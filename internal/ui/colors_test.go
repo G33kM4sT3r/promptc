@@ -3,6 +3,7 @@ package ui
 import (
 	"errors"
 	"os"
+	"strings"
 	"testing"
 
 	"github.com/charmbracelet/bubbles/spinner"
@@ -85,6 +86,52 @@ func TestGradientText_EmptyLineInMiddle(t *testing.T) {
 	result := GradientText("line1\n\nline3", "#FF0000", "#0000FF")
 	if result == "" {
 		t.Error("expected non-empty result")
+	}
+}
+
+func TestBarChart(t *testing.T) {
+	oldState := colorsOff
+	colorsOff = true
+	defer func() { colorsOff = oldState }()
+
+	tests := []struct {
+		name     string
+		score    int
+		max      int
+		width    int
+		wantFill int
+	}{
+		{"full", 25, 25, 20, 20},
+		{"empty", 0, 15, 20, 0},
+		{"half", 5, 10, 20, 10},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			got := BarChart(tt.score, tt.max, tt.width)
+			if got == "" {
+				t.Error("BarChart returned empty string")
+			}
+			fills := strings.Count(got, "█")
+			empties := strings.Count(got, "░")
+			if fills+empties != tt.width {
+				t.Errorf("bar width = %d, want %d", fills+empties, tt.width)
+			}
+			if fills != tt.wantFill {
+				t.Errorf("filled = %d, want %d", fills, tt.wantFill)
+			}
+		})
+	}
+}
+
+func TestBarChart_ZeroMax(t *testing.T) {
+	oldState := colorsOff
+	colorsOff = true
+	defer func() { colorsOff = oldState }()
+
+	got := BarChart(5, 0, 10)
+	if got == "" {
+		t.Error("BarChart returned empty string")
 	}
 }
 

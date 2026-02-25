@@ -1,3 +1,8 @@
+format:
+  date: "2. Jan 2006"
+  datetime: "2. Jan 2006 15:04"
+  time: "15:04"
+
 labels:
   role: "Rolle"
   objective: "Ziel"
@@ -13,6 +18,9 @@ objective:
   generate: "Erstelle %s."
   analyze: "Analysiere %s."
   decide: "Hilf bei der Entscheidung über %s."
+  debug: "Debugge %s."
+  refactor: "Refaktoriere %s."
+  summarize: "Fasse %s zusammen."
   fallback: "Stelle relevante Informationen bereit."
   fallback_topic: "das gegebene Thema"
 
@@ -58,6 +66,20 @@ scope:
   decide_options: "Verfügbare Optionen klar präsentieren"
   decide_tradeoffs: "Kompromisse zwischen Alternativen vergleichen"
   decide_recommendation: "Eine Empfehlung mit Begründung geben"
+  # debug scopes
+  debug_symptoms: "Beschreibe die beobachteten Symptome und das erwartete Verhalten"
+  debug_hypotheses: "Identifiziere wahrscheinliche Ursachen"
+  debug_investigation: "Skizziere systematische Untersuchungsschritte"
+  debug_resolution: "Schlage gezielte Korrekturen vor"
+  # refactor scopes
+  refactor_problems: "Identifiziere aktuelle strukturelle Probleme"
+  refactor_approach: "Schlage einen Refactoring-Ansatz vor"
+  refactor_before_after: "Beschreibe den erwarteten Vorher-Nachher-Zustand"
+  refactor_risks: "Hebe Risiken und Gegenmaßnahmen hervor"
+  # summarize scopes
+  summarize_key_points: "Die wichtigsten Punkte herausarbeiten"
+  summarize_relationships: "Zusammenhänge zwischen Konzepten erklären"
+  summarize_takeaways: "Umsetzbare Erkenntnisse liefern"
   # fallback
   fallback: "Das Hauptthema klar behandeln"
   example_reference: "Verwende %s als Referenzbeispiel"
@@ -85,6 +107,9 @@ output:
   generate: "Präsentiere die Ausgabe in einem gebrauchsfertigen Format"
   analyze: "Strukturiere Erkenntnisse mit klaren Kategorien"
   decide: "Präsentiere Optionen nebeneinander zum einfachen Vergleich"
+  debug: "Strukturiere Ergebnisse als Diagnose mit klaren Belegen"
+  refactor: "Zeige Vorher/Nachher-Vergleiche"
+  summarize: "Präsentiere eine knappe, strukturierte Zusammenfassung"
   brief: "Halte Abschnitte kurz"
   fallback: "Verwende eine klare und lesbare Struktur"
 
@@ -94,3 +119,6 @@ quality:
   complete: "Vollständig und gebrauchsfertig"
   balanced: "Ausgewogen und evidenzbasiert"
   fair: "Fairer Vergleich aller Optionen"
+  systematic: "Systematisch und gründlich"
+  preserves_behavior: "Bewahrt bestehendes Verhalten"
+  concise_summary: "Knapp aber umfassend"

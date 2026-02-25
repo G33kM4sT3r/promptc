@@ -55,7 +55,7 @@ Quality criteria:
 - Accurate
 ```
 
-### All Five Intents
+### Intents
 
 ```bash
 promptc compile "explain closures for beginners"           # explain
@@ -63,6 +63,9 @@ promptc compile "how do I start a project with PHP"         # howto
 promptc compile "generate a REST API with Python"           # generate
 promptc compile "analyze authentication code with Java"     # analyze
 promptc compile "should I use React or Vue"                 # decide
+promptc compile "debug why my API returns 500"              # debug
+promptc compile "refactor this function for readability"    # refactor
+promptc compile "summarize microservices architecture"      # summarize
 ```
 
 ### Output Formats
@@ -77,13 +80,13 @@ promptc compile -o json "analyze authentication code"
 
 ### Quality Score
 
-Use `--score` to see a completeness score (0–100) for the generated prompt:
+Use `--score` to see a per-section completeness breakdown (0–100) with bar charts:
 
 ```bash
 promptc compile --score "explain closures for beginners"
 ```
 
-The score is printed to stderr so it doesn't interfere with piped output.
+The breakdown is printed to stderr so it doesn't interfere with piped output. Also available as `--score --output json` or `--score --output yaml`.
 
 ### Clipboard
 
@@ -150,6 +153,7 @@ The REPL provides a persistent session with colored output, a status bar showing
 | `:output <fmt>`      | Switch output format (text/json/yaml)|
 | `:history`           | List previous compilations           |
 | `:recall <N>`        | Recall a history entry by index      |
+| `:search <term>`     | Search history by input text         |
 | `:copy`              | Copy last output to clipboard        |
 | `:quit`, `:q`, `:exit` | Exit the REPL                     |
 
@@ -164,14 +168,29 @@ promptc compile --lang de "explain closures for beginners"   # render in German
 promptc compile --lang en "erkläre closures"                 # render in English
 ```
 
-### Prompt History
+### Stdin Piping
 
-Compilations from both the CLI and REPL are saved automatically. Browse and recall them:
+Pipe input from other commands instead of passing it as an argument:
 
 ```bash
-promptc history                    # list all entries
-promptc history 0                  # recall entry by index
-promptc history 0 --output json    # recall as JSON
+echo "explain closures" | promptc compile
+cat prompt.txt | promptc compile --output json
+promptc compile - < prompt.txt
+```
+
+### Prompt History
+
+Compilations from both the CLI and REPL are saved automatically (capped at 500 entries / 90 days):
+
+```bash
+promptc history                       # list all entries
+promptc history --limit 5             # show last 5
+promptc history 0                     # recall entry by index
+promptc history 0 --output json       # recall as JSON
+promptc history --search "explain"    # search by input text
+promptc history --delete 2 --yes      # delete entry at index
+promptc history --clear --yes         # clear all history
+promptc history --export              # export as JSON
 ```
 
 ### Version
@@ -195,18 +214,18 @@ This downloads `data/lid.176.ftz` (~900 KB). When the model is absent, promptc f
 promptc compiles prompts through a pipeline of deterministic stages:
 
 ```
-Input → Normalize → Tokenize → Detect Language → Extract Slots → Clean Topic → Apply Rules → Render
+Input → Normalize → Tokenize (phrase → boundary → split) → Detect Language → Extract Slots → Clean Topic → Apply Rules → Render
 ```
 
 **Config** loads comprehensive keyword lexicons from YAML data files at startup. All extraction is data-driven — extend keywords without changing code.
 
 **Language Detection** uses fastText (`data/lid.176.ftz`) when available, falling back to keyword-score heuristics. The `--lang` (`-l`) flag overrides detection entirely.
 
-**Extraction** identifies intent (`explain`, `howto`, `generate`, `analyze`, `decide`), topic, entities (e.g., "with PHP" as implementation medium), stage (`getting-started`, `implementation`, `optimization`), and modifiers (audience, depth, style, format) using config-driven lookups with phrase and keyword matching.
+**Extraction** identifies intent (`explain`, `howto`, `generate`, `analyze`, `decide`, `debug`, `refactor`, `summarize`), topic, entities (e.g., "with PHP" as implementation medium), stage (`getting-started`, `implementation`, `optimization`), and modifiers (audience, depth, style, format) using config-driven lookups with phrase and keyword matching.
 
 **Topic Cleanup** strips leading articles ("a", "the", "an", "die", "der", "das") and normalizes known acronyms to their canonical casing (`data/acronyms.yaml`).
 
-**Rules** (25 built-in) transform extracted slots into a structured `PromptSpec` — encoding prompt engineering best practices as composable, order-aware functions. Each rule accepts a `Translator` to produce language-appropriate text.
+**Rules** (28 built-in) transform extracted slots into a structured `PromptSpec` — encoding prompt engineering best practices as composable, order-aware functions. Each rule accepts a `Translator` to produce language-appropriate text.
 
 **Rendering** formats the spec into text, JSON, or YAML. The `TranslatedRenderer` looks up section labels (`Objective:`, `Ziel:`, etc.) from the active translation file. JSON and YAML renderers serialize the spec directly for machine consumption.
 

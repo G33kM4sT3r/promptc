@@ -1,0 +1,19 @@
+Objective:
+Refactor this function.
+
+Context:
+The user is looking to improve an existing solution. The target domain is readability.
+
+Scope:
+- Identify current structural problems
+- Propose a refactoring approach
+- Describe the expected before and after state
+- Highlight risks and mitigation strategies
+
+Output:
+- Show before/after comparisons
+
+Quality criteria:
+- Clear and structured
+- Accurate
+- Preserves existing behavior

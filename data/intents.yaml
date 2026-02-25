@@ -38,3 +38,27 @@ intents:
     phrases:
       en: [should i use, which is better, what should i, which one, pros and cons]
       de: [soll ich, was ist besser, welches ist besser]
+
+  debug:
+    keywords:
+      en: [debug, diagnose, troubleshoot, trace, investigate]
+      de: [debugge, diagnostiziere, untersuche, verfolge, finde]
+    phrases:
+      en: [find the bug, root cause, figure out why, why does, why is]
+      de: [finde den fehler, ursache finden, warum funktioniert]
+
+  refactor:
+    keywords:
+      en: [refactor, restructure, reorganize, simplify, modernize]
+      de: [refaktoriere, restrukturiere, reorganisiere, vereinfache, modernisiere]
+    phrases:
+      en: [clean up, make cleaner, improve the structure]
+      de: [aufräumen, struktur verbessern, bereinige]
+
+  summarize:
+    keywords:
+      en: [summarize, summarise, recap, condense, overview]
+      de: [zusammenfassen, fasse zusammen, überblick, rekapituliere]
+    phrases:
+      en: [give me the gist, key points, tl;dr, sum up, in a nutshell]
+      de: [gib mir einen überblick, die wichtigsten punkte, kurz gefasst]

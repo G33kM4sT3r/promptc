@@ -31,7 +31,7 @@ Linear pipeline: `Input → Normalize → Tokenize → Detect Language → Extra
 | `config/` | Loads YAML from `data/` + `languages/`. `FindBaseDir()` checks `PROMPTC_DATA` env, exe dir, cwd. |
 | `language/` | fastText ML detection → keyword fallback → ISO 639-1 code. `--lang` overrides. |
 | `pipeline/` | Orchestrates stages: `Run()` → Slots, `RunWithRules()` → PromptSpec, `RunWithTrace()` → explain info. |
-| `extract/` | Config-driven slot extraction via reverse lookup maps. Intent (5 types), topic, stage, entities (4 roles), modifiers (audience/depth/style/format). |
+| `extract/` | Config-driven slot extraction via reverse lookup maps. Intent (5+ types), topic, stage, entities (4 roles), modifiers (audience/depth/style/format). |
 | `i18n/` | `Translator` — keyed lookup from `translations/<lang>.yaml`, English fallback, key-string last resort. `Get(key)`, `Getf(key, args...)`. |
 | `rules/` | 25 order-dependent, append-only rules in `builtin/`. `When` guard + `Apply` mutator. Deduplicates after all rules fire. `ApplyWithTrace()` for explain mode. |
 | `repl/` | Bubbletea TUI. Commands: `:help :explain :lang :output :history :recall :copy :quit`. Auto-saves to history. |
@@ -52,6 +52,14 @@ Linear pipeline: `Input → Normalize → Tokenize → Detect Language → Extra
 ### Rule Ordering
 
 Rules are order-dependent — `rule_ordering_test.go` encodes constraints. When adding rules: add to `pipeline.newEngine()` AND the test's `canonicalRuleOrder()`.
+
+### Adding New Intents
+
+New intents require changes in **4 places** beyond data/translations:
+1. `objective.go` — switch case in `ObjectiveRule`
+2. `output.go` — switch case in `OutputFromIntentRule`
+3. `quality.go` — switch case in `QualityFromIntentRule`
+4. New `scope_<intent>.go` file + registration in `pipeline.newEngine()` and `canonicalRuleOrder()`
 
 ## Design Principles
 
@@ -77,8 +85,17 @@ Rules are order-dependent — `rule_ordering_test.go` encodes constraints. When 
 - **Changelog format**: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Add entry before tagging.
 - **Release process**: Update CHANGELOG.md → commit → `git tag v<version>` → push with `--tags`
 
+## Pre-commit Checklist
+
+- **BEFORE committing** you MUST run `gofmt -l .` and `golangci-lint run ./...` and fix all issues.
+- **After adding new dependencies** always run `go mod tidy` before committing.
+
 ## Known Gotchas
 
+- **Data YAML convention**: All `data/*.yaml` files with per-language content MUST use `map[string][]string` structure (`en: [...]`, `de: [...]`). Never flat lists. See `intents.yaml`, `modifiers.yaml`, `entities.yaml`, `phrases.yaml` for examples.
+- **Pipeline ordering**: Tokenization runs BEFORE language detection (`Tokenize → Detect Language → Extract`). Features at the tokenize stage must handle all languages, not just the detected one.
+- **Golden file generation**: Use `go run ./cmd/promptc compile "input" 2>/dev/null` to generate golden output. Cannot use `internal/` packages from standalone Go files.
+- **Optional config loading**: New optional data files (like `phrases.yaml`, `acronyms.yaml`) use `yaml:"-"` tag on Config struct and manual loading with error suppression in `loader.go`.
 - **macOS linker warning**: `ld: warning: ignoring duplicate libraries: '-lc++'` from go-fasttext CGO. Suppressed in Makefile via `CGO_LDFLAGS`. Harmless.
 - **Extraction case**: Lookup maps use lowercase keys. Always `strings.ToLower()` before lookups, preserve original case in output.
 - **Translation keys**: Both `en.yaml` and `de.yaml` must have symmetric keys. No orphaned keys.

@@ -42,3 +42,21 @@ func TestJSONRendererEmpty(t *testing.T) {
 		t.Fatalf("invalid JSON for empty spec: %v", err)
 	}
 }
+
+func TestJSONRendererRenderScore(t *testing.T) {
+	r := &JSONRenderer{}
+	sb := ScoreBreakdown{
+		Total:      65,
+		Breakdown:  map[string]int{"objective": 25, "scope": 15},
+		MaxWeights: map[string]int{"objective": 25, "scope": 15},
+	}
+	output := r.RenderScore(sb)
+
+	var parsed ScoreBreakdown
+	if err := json.Unmarshal([]byte(output), &parsed); err != nil {
+		t.Fatalf("invalid JSON: %v", err)
+	}
+	if parsed.Total != 65 {
+		t.Errorf("total = %d, want 65", parsed.Total)
+	}
+}

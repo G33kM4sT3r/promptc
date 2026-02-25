@@ -2,12 +2,14 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"os"
 	"path/filepath"
+	"strings"
+	"time"
 
 	"github.com/spf13/cobra"
-
-	"time"
+	"golang.org/x/term"
 
 	"promptc/internal/clipboard"
 	"promptc/internal/explain"
@@ -31,7 +33,7 @@ var compileCmd = &cobra.Command{
 	Use:   "compile [input]",
 	Short: "Compile natural language into a structured prompt",
 	Long:  "Compile takes a natural language input string and transforms it into a structured AI prompt using rule-based NLP.",
-	Args:  cobra.ExactArgs(1),
+	Args:  cobra.MaximumNArgs(1),
 	RunE:  runCompile,
 }
 
@@ -43,7 +45,10 @@ func init() {
 }
 
 func runCompile(cmd *cobra.Command, args []string) error {
-	input := args[0]
+	input, err := resolveInput(args)
+	if err != nil {
+		return err
+	}
 
 	cfg, baseDir, err := loadConfig()
 	if err != nil {
@@ -110,7 +115,20 @@ func runCompile(cmd *cobra.Command, args []string) error {
 	scoreResult := score.Score(spec)
 
 	if scoreFlag {
-		fmt.Fprintf(os.Stderr, "\nScore: %d/100\n", scoreResult.Total)
+		sb := render.ScoreBreakdown{
+			Total:      scoreResult.Total,
+			Breakdown:  scoreResult.Breakdown,
+			MaxWeights: score.MaxWeights(),
+		}
+		switch outputFlag {
+		case "json":
+			fmt.Fprintln(os.Stderr, (&render.JSONRenderer{}).RenderScore(sb))
+		case "yaml":
+			fmt.Fprintln(os.Stderr, (&render.YAMLRenderer{}).RenderScore(sb))
+		default:
+			translator := loadTranslator(baseDir, detectedLang)
+			fmt.Fprint(os.Stderr, render.NewTranslated(translator).RenderScore(sb))
+		}
 	}
 
 	// Auto-save to history
@@ -124,6 +142,30 @@ func runCompile(cmd *cobra.Command, args []string) error {
 	})
 
 	return nil
+}
+
+func resolveInput(args []string) (string, error) {
+	if len(args) == 1 && args[0] != "-" {
+		return args[0], nil
+	}
+
+	// Read from stdin if piped or dash argument
+	if len(args) == 0 || args[0] == "-" {
+		if len(args) == 0 && term.IsTerminal(int(os.Stdin.Fd())) {
+			return "", fmt.Errorf("no input provided (use an argument or pipe input via stdin)")
+		}
+		data, err := io.ReadAll(os.Stdin)
+		if err != nil {
+			return "", fmt.Errorf("reading stdin: %w", err)
+		}
+		input := strings.TrimSpace(string(data))
+		if input == "" {
+			return "", fmt.Errorf("empty input from stdin")
+		}
+		return input, nil
+	}
+
+	return "", fmt.Errorf("no input provided")
 }
 
 func loadTranslator(baseDir, lang string) *i18n.Translator {

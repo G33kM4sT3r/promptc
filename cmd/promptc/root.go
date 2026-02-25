@@ -99,5 +99,9 @@ func formatBuildDate(isoDate string) string {
 			return isoDate
 		}
 	}
-	return t.Format("Jan 2, 2006")
+	_, baseDir, cfgErr := loadConfig()
+	if cfgErr != nil {
+		return t.Format("Jan 2, 2006")
+	}
+	return loadTranslator(baseDir, langFlag).FormatDate(t)
 }

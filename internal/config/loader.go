@@ -43,6 +43,13 @@ func Load(baseDir string) (*Config, error) {
 		cfg.Contractions = contractions
 	}
 
+	// Load phrases (optional — don't error if missing)
+	var phrases PhrasesConfig
+	phrasesPath := filepath.Join(baseDir, "data", "phrases.yaml")
+	if err := loadYAML(phrasesPath, &phrases); err == nil {
+		cfg.Phrases = phrases
+	}
+
 	// Load language files
 	langDir := filepath.Join(baseDir, "languages")
 	entries, err := os.ReadDir(langDir)

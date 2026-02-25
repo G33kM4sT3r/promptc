@@ -26,6 +26,9 @@ func canonicalRuleOrder() []rules.Rule {
 		builtin.ScopeGenerateRule(),
 		builtin.ScopeAnalyzeRule(),
 		builtin.ScopeDecideRule(),
+		builtin.ScopeDebugRule(),
+		builtin.ScopeRefactorRule(),
+		builtin.ScopeSummarizeRule(),
 		builtin.ScopeFromExampleObjectRule(),
 		builtin.ScopeFallbackRule(),
 
@@ -58,8 +61,8 @@ func TestRuleOrderingConstraints(t *testing.T) {
 	}
 
 	// Verify we have exactly 25 rules
-	if len(ruleList) != 25 {
-		t.Fatalf("expected 25 canonical rules, got %d", len(ruleList))
+	if len(ruleList) != 28 {
+		t.Fatalf("expected 28 canonical rules, got %d", len(ruleList))
 	}
 
 	// Define ordering constraints: {before, after, reason}
@@ -82,6 +85,9 @@ func TestRuleOrderingConstraints(t *testing.T) {
 		{"scope.generate", "scope.fallback", "specific scope before fallback"},
 		{"scope.analyze", "scope.fallback", "specific scope before fallback"},
 		{"scope.decide", "scope.fallback", "specific scope before fallback"},
+		{"scope.debug", "scope.fallback", "specific scope before fallback"},
+		{"scope.refactor", "scope.fallback", "specific scope before fallback"},
+		{"scope.summarize", "scope.fallback", "specific scope before fallback"},
 
 		// Scope: intent scope sets before example appends
 		{"scope.explain", "scope.from_example_object", "intent scope sets before example appends"},

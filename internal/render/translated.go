@@ -1,10 +1,12 @@
 package render
 
 import (
+	"fmt"
 	"strings"
 
 	"promptc/internal/i18n"
 	"promptc/internal/prompt"
+	"promptc/internal/ui"
 )
 
 // TranslatedRenderer renders a PromptSpec using translated labels from the i18n Translator.
@@ -29,4 +31,20 @@ func (r *TranslatedRenderer) Render(p prompt.PromptSpec) string {
 	writeList(&b, r.t.Get("labels.quality"), p.QualityCriteria)
 
 	return strings.TrimSpace(b.String())
+}
+
+// RenderScore renders a score breakdown with bar charts.
+func (r *TranslatedRenderer) RenderScore(sb ScoreBreakdown) string {
+	var b strings.Builder
+	fmt.Fprintf(&b, "\nScore: %d/100\n\n", sb.Total)
+
+	sections := []string{"objective", "context", "scope", "output", "role", "constraints", "quality"}
+	for _, sec := range sections {
+		maxW := sb.MaxWeights[sec]
+		sc := sb.Breakdown[sec]
+		bar := ui.BarChart(sc, maxW, 20)
+		fmt.Fprintf(&b, "  %-14s %2d/%-3d %s\n", sec, sc, maxW, bar)
+	}
+
+	return b.String()
 }

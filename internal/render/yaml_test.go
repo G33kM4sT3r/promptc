@@ -34,3 +34,21 @@ func TestYAMLRendererEmpty(t *testing.T) {
 		t.Errorf("empty spec YAML = %q, want %q", output, "{}\n")
 	}
 }
+
+func TestYAMLRendererRenderScore(t *testing.T) {
+	r := &YAMLRenderer{}
+	sb := ScoreBreakdown{
+		Total:      65,
+		Breakdown:  map[string]int{"objective": 25},
+		MaxWeights: map[string]int{"objective": 25},
+	}
+	output := r.RenderScore(sb)
+
+	var parsed ScoreBreakdown
+	if err := yaml.Unmarshal([]byte(output), &parsed); err != nil {
+		t.Fatalf("invalid YAML: %v", err)
+	}
+	if parsed.Total != 65 {
+		t.Errorf("total = %d, want 65", parsed.Total)
+	}
+}

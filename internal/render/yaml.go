@@ -17,3 +17,12 @@ func (r *YAMLRenderer) Render(p prompt.PromptSpec) string {
 	}
 	return string(b)
 }
+
+// RenderScore marshals a ScoreBreakdown to YAML.
+func (r *YAMLRenderer) RenderScore(sb ScoreBreakdown) string {
+	b, err := yaml.Marshal(sb)
+	if err != nil {
+		return "{}\n"
+	}
+	return string(b)
+}

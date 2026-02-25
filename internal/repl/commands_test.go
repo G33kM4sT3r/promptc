@@ -46,6 +46,11 @@ func TestParseCommand(t *testing.T) {
 		{"regular text", "explain docker", cmdNone, ""},
 		{"no colon prefix", "quit", cmdNone, ""},
 
+		// Search
+		{"search", ":search closures", cmdSearch, "closures"},
+		{"search no arg", ":search", cmdSearch, ""},
+		{"search case", ":SEARCH term", cmdSearch, "term"},
+
 		// Unknown commands
 		{"unknown :foo", ":foo", cmdUnknown, ":foo"},
 		{"unknown :bar baz", ":bar baz", cmdUnknown, ":bar baz"},

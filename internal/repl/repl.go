@@ -126,6 +126,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				} else if len(entries) == 0 {
 					m.output = styleDim.Render("No history entries.")
 				} else {
+					tr := loadTranslator(m.baseDir, m.lang)
 					var lines []string
 					start := 0
 					if len(entries) > 10 {
@@ -133,7 +134,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 					}
 					for i := start; i < len(entries); i++ {
 						e := entries[i]
-						ts := e.Timestamp.Format("15:04")
+						ts := tr.FormatTime(e.Timestamp)
 						lines = append(lines, styleDim.Render(fmt.Sprintf("[%d] %s  %s  (score: %d)", i, ts, e.Input, e.Score)))
 					}
 					m.output = strings.Join(lines, "\n")
@@ -162,6 +163,26 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				rendered := m.renderSpec(entry.Spec, translator)
 				scoreLine := styleDim.Render(fmt.Sprintf("Score: %d/100", entry.Score))
 				m.output = rendered + "\n" + scoreLine
+				m.err = nil
+				return m, nil
+			case cmdSearch:
+				if cmd.args == "" {
+					m.output = styleError.Render("Usage: :search <term>")
+					m.err = nil
+					return m, nil
+				}
+				results := m.store.Search(cmd.args)
+				if len(results) == 0 {
+					m.output = styleDim.Render("No matching entries.")
+				} else {
+					tr := loadTranslator(m.baseDir, m.lang)
+					var lines []string
+					for i, e := range results {
+						ts := tr.FormatTime(e.Timestamp)
+						lines = append(lines, styleDim.Render(fmt.Sprintf("[%d] %s  %s  (score: %d)", i, ts, e.Input, e.Score)))
+					}
+					m.output = strings.Join(lines, "\n")
+				}
 				m.err = nil
 				return m, nil
 			case cmdCopy:

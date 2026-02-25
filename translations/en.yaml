@@ -1,3 +1,8 @@
+format:
+  date: "Jan 2, 2006"
+  datetime: "Jan 2, 2006 3:04 PM"
+  time: "3:04 PM"
+
 labels:
   role: "Role"
   objective: "Objective"
@@ -13,6 +18,9 @@ objective:
   generate: "Generate %s."
   analyze: "Analyze %s."
   decide: "Help decide on %s."
+  debug: "Debug %s."
+  refactor: "Refactor %s."
+  summarize: "Summarize %s."
   fallback: "Provide relevant information."
   fallback_topic: "the given topic"
 
@@ -58,6 +66,20 @@ scope:
   decide_options: "Present available options clearly"
   decide_tradeoffs: "Compare trade-offs between alternatives"
   decide_recommendation: "Provide a recommendation with rationale"
+  # debug scopes
+  debug_symptoms: "Describe the observed symptoms and expected behavior"
+  debug_hypotheses: "Identify likely root causes"
+  debug_investigation: "Outline systematic investigation steps"
+  debug_resolution: "Suggest targeted fixes"
+  # refactor scopes
+  refactor_problems: "Identify current structural problems"
+  refactor_approach: "Propose a refactoring approach"
+  refactor_before_after: "Describe the expected before and after state"
+  refactor_risks: "Highlight risks and mitigation strategies"
+  # summarize scopes
+  summarize_key_points: "Extract the key points"
+  summarize_relationships: "Explain how concepts relate"
+  summarize_takeaways: "Provide actionable takeaways"
   # fallback
   fallback: "Address the main topic clearly"
   example_reference: "Use %s as a reference example"
@@ -85,6 +107,9 @@ output:
   generate: "Present the output in a ready-to-use format"
   analyze: "Structure findings with clear categories"
   decide: "Present options side by side for easy comparison"
+  debug: "Structure findings as diagnosis with clear evidence"
+  refactor: "Show before/after comparisons"
+  summarize: "Present a concise, structured summary"
   brief: "Keep sections brief"
   fallback: "Use a clear and readable structure"
 
@@ -94,3 +119,6 @@ quality:
   complete: "Complete and ready to use"
   balanced: "Balanced and evidence-based"
   fair: "Fair comparison of all options"
+  systematic: "Systematic and thorough"
+  preserves_behavior: "Preserves existing behavior"
+  concise_summary: "Concise yet comprehensive"

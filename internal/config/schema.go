@@ -9,6 +9,7 @@ type Config struct {
 	Languages    map[string]LanguageConfig `yaml:"languages"`
 	Acronyms     AcronymsConfig            `yaml:"-"`
 	Contractions ContractionsConfig        `yaml:"-"`
+	Phrases      PhrasesConfig             `yaml:"-"`
 }
 
 // ContractionsConfig holds contraction expansion mappings.
@@ -19,6 +20,11 @@ type ContractionsConfig struct {
 // AcronymsConfig holds the list of known acronyms for topic casing.
 type AcronymsConfig struct {
 	Acronyms []string `yaml:"acronyms"`
+}
+
+// PhrasesConfig holds known multi-word phrases per language for topic extraction.
+type PhrasesConfig struct {
+	Phrases map[string][]string `yaml:"phrases"`
 }
 
 // IntentsConfig maps intent names to their detection patterns.

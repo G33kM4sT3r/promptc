@@ -8,6 +8,19 @@ type ScoreResult struct {
 	Breakdown map[string]int `json:"breakdown"`
 }
 
+// MaxWeights returns the maximum possible score per section.
+func MaxWeights() map[string]int {
+	return map[string]int{
+		"role":        10,
+		"objective":   25,
+		"context":     15,
+		"scope":       15,
+		"constraints": 10,
+		"output":      15,
+		"quality":     10,
+	}
+}
+
 // Score evaluates a PromptSpec on completeness, returning 0-100.
 func Score(p prompt.PromptSpec) ScoreResult {
 	breakdown := map[string]int{}

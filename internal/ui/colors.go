@@ -95,6 +95,33 @@ func GradientText(text, startHex, endHex string) string {
 	return out.String()
 }
 
+// BarChart renders a horizontal bar of the given width.
+// Filled portion is proportional to score/max.
+func BarChart(score, maxVal, width int) string {
+	if maxVal <= 0 {
+		maxVal = 1
+	}
+	filled := 0
+	if score > 0 {
+		filled = (score * width) / maxVal
+		if filled > width {
+			filled = width
+		}
+	}
+	empty := width - filled
+
+	fillStr := strings.Repeat("█", filled)
+	emptyStr := strings.Repeat("░", empty)
+
+	if colorsOff {
+		return fillStr + emptyStr
+	}
+
+	fillStyle := lipgloss.NewStyle().Foreground(lipgloss.Color("78"))
+	emptyStyle := lipgloss.NewStyle().Foreground(lipgloss.Color("238"))
+	return fillStyle.Render(fillStr) + emptyStyle.Render(emptyStr)
+}
+
 func hexToRGB(hex string) (int, int, int) {
 	hex = strings.TrimPrefix(hex, "#")
 	if len(hex) != 6 {

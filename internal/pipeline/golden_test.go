@@ -53,6 +53,36 @@ func TestGolden(t *testing.T) {
 			lang:   "de",
 			golden: "explain_de_deep.golden",
 		},
+		{
+			name:   "explain EN phrase",
+			input:  "explain machine learning for beginners",
+			lang:   "en",
+			golden: "explain_en_phrase.golden",
+		},
+		{
+			name:   "debug EN",
+			input:  "debug why my API returns 500",
+			lang:   "en",
+			golden: "debug_en.golden",
+		},
+		{
+			name:   "debug DE",
+			input:  "debugge warum mein API 500 zurückgibt",
+			lang:   "de",
+			golden: "debug_de.golden",
+		},
+		{
+			name:   "refactor EN",
+			input:  "refactor this function for readability",
+			lang:   "en",
+			golden: "refactor_en.golden",
+		},
+		{
+			name:   "summarize EN",
+			input:  "summarize microservices architecture",
+			lang:   "en",
+			golden: "summarize_en.golden",
+		},
 	}
 
 	for _, tt := range tests {

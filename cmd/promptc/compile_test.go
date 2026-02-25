@@ -71,3 +71,33 @@ func TestCompileCommand_NoInput(t *testing.T) {
 		t.Error("expected error for missing input")
 	}
 }
+
+func TestCompileCommand_Stdin(t *testing.T) {
+	out, err := runBinaryWithStdin("explain kubernetes", "compile")
+	if err != nil {
+		t.Fatalf("compile via stdin failed: %v\n%s", err, out)
+	}
+	if out == "" {
+		t.Error("expected non-empty output from stdin")
+	}
+}
+
+func TestCompileCommand_Dash(t *testing.T) {
+	out, err := runBinaryWithStdin("explain docker", "compile", "-")
+	if err != nil {
+		t.Fatalf("compile with dash failed: %v\n%s", err, out)
+	}
+	if out == "" {
+		t.Error("expected non-empty output from dash stdin")
+	}
+}
+
+func TestCompileCommand_StdinJSON(t *testing.T) {
+	out, err := runBinaryWithStdin("explain closures", "compile", "--output", "json")
+	if err != nil {
+		t.Fatalf("compile stdin json failed: %v\n%s", err, out)
+	}
+	if !strings.HasPrefix(strings.TrimSpace(out), "{") {
+		t.Errorf("expected JSON from stdin, got: %.50s", out)
+	}
+}

@@ -519,6 +519,102 @@ func TestScopeDecideRule(t *testing.T) {
 }
 
 // ---------------------------------------------------------------------------
+// ScopeDebugRule
+// ---------------------------------------------------------------------------
+
+func TestScopeDebugRule(t *testing.T) {
+	rule := ScopeDebugRule()
+	tr := loadTestTranslator(t)
+
+	t.Run("When_debug", func(t *testing.T) {
+		if !rule.When(slots.Slots{Intent: "debug"}) {
+			t.Error("expected true")
+		}
+	})
+
+	t.Run("When_not_debug", func(t *testing.T) {
+		if rule.When(slots.Slots{Intent: "explain"}) {
+			t.Error("expected false")
+		}
+	})
+
+	t.Run("Apply", func(t *testing.T) {
+		var spec prompt.PromptSpec
+		rule.Apply(&spec, slots.Slots{Intent: "debug"}, tr)
+		if len(spec.Scope) != 4 {
+			t.Fatalf("len(Scope) = %d, want 4", len(spec.Scope))
+		}
+		if spec.Scope[0] != "Describe the observed symptoms and expected behavior" {
+			t.Errorf("Scope[0] = %q", spec.Scope[0])
+		}
+	})
+}
+
+// ---------------------------------------------------------------------------
+// ScopeRefactorRule
+// ---------------------------------------------------------------------------
+
+func TestScopeRefactorRule(t *testing.T) {
+	rule := ScopeRefactorRule()
+	tr := loadTestTranslator(t)
+
+	t.Run("When_refactor", func(t *testing.T) {
+		if !rule.When(slots.Slots{Intent: "refactor"}) {
+			t.Error("expected true")
+		}
+	})
+
+	t.Run("When_not_refactor", func(t *testing.T) {
+		if rule.When(slots.Slots{Intent: "explain"}) {
+			t.Error("expected false")
+		}
+	})
+
+	t.Run("Apply", func(t *testing.T) {
+		var spec prompt.PromptSpec
+		rule.Apply(&spec, slots.Slots{Intent: "refactor"}, tr)
+		if len(spec.Scope) != 4 {
+			t.Fatalf("len(Scope) = %d, want 4", len(spec.Scope))
+		}
+		if spec.Scope[0] != "Identify current structural problems" {
+			t.Errorf("Scope[0] = %q", spec.Scope[0])
+		}
+	})
+}
+
+// ---------------------------------------------------------------------------
+// ScopeSummarizeRule
+// ---------------------------------------------------------------------------
+
+func TestScopeSummarizeRule(t *testing.T) {
+	rule := ScopeSummarizeRule()
+	tr := loadTestTranslator(t)
+
+	t.Run("When_summarize", func(t *testing.T) {
+		if !rule.When(slots.Slots{Intent: "summarize"}) {
+			t.Error("expected true")
+		}
+	})
+
+	t.Run("When_not_summarize", func(t *testing.T) {
+		if rule.When(slots.Slots{Intent: "explain"}) {
+			t.Error("expected false")
+		}
+	})
+
+	t.Run("Apply", func(t *testing.T) {
+		var spec prompt.PromptSpec
+		rule.Apply(&spec, slots.Slots{Intent: "summarize"}, tr)
+		if len(spec.Scope) != 3 {
+			t.Fatalf("len(Scope) = %d, want 3", len(spec.Scope))
+		}
+		if spec.Scope[0] != "Extract the key points" {
+			t.Errorf("Scope[0] = %q", spec.Scope[0])
+		}
+	})
+}
+
+// ---------------------------------------------------------------------------
 // ScopeFallbackRule
 // ---------------------------------------------------------------------------
 

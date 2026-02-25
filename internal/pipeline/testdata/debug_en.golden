@@ -1,0 +1,16 @@
+Objective:
+Debug why my API returns 500.
+
+Scope:
+- Describe the observed symptoms and expected behavior
+- Identify likely root causes
+- Outline systematic investigation steps
+- Suggest targeted fixes
+
+Output:
+- Structure findings as diagnosis with clear evidence
+
+Quality criteria:
+- Clear and structured
+- Accurate
+- Systematic and thorough

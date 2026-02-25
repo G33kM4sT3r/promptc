@@ -29,6 +29,23 @@ func TestScoreFullSpec(t *testing.T) {
 	}
 }
 
+func TestMaxWeights(t *testing.T) {
+	weights := MaxWeights()
+	total := 0
+	for _, v := range weights {
+		total += v
+	}
+	if total != 100 {
+		t.Errorf("MaxWeights sum = %d, want 100", total)
+	}
+	if weights["objective"] != 25 {
+		t.Errorf("objective weight = %d, want 25", weights["objective"])
+	}
+	if weights["role"] != 10 {
+		t.Errorf("role weight = %d, want 10", weights["role"])
+	}
+}
+
 func TestScorePartial(t *testing.T) {
 	spec := prompt.PromptSpec{
 		Objective: "Explain closures",

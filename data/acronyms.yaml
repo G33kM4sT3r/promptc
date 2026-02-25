@@ -1,34 +1,271 @@
 acronyms:
+  # Web & API
   - REST
   - API
-  - PHP
-  - SQL
-  - CSS
-  - HTML
-  - JSON
-  - JWT
   - HTTP
   - HTTPS
   - URL
-  - CLI
-  - SDK
-  - ORM
-  - MVC
-  - TDD
-  - CI
-  - CD
-  - AWS
-  - GCP
-  - DNS
-  - SSH
-  - TCP
-  - UDP
-  - XML
-  - YAML
+  - URI
   - CORS
   - CRUD
   - DOM
-  - GPU
-  - IDE
-  - NPM
+  - HTML
+  - CSS
+  - JSON
+  - XML
+  - YAML
+  - TOML
+  - JWT
+  - OAuth
+  - SOAP
+  - RPC
+  - gRPC
+  - HATEOAS
+  - MIME
+  - CDN
+  - SPA
+  - SSR
+  - SSG
+  - PWA
+  - SEO
+  - WCAG
+  - SVG
   - WASM
+  - WebRTC
+  - MQTT
+
+  # Programming Languages & Runtimes
+  - PHP
+  - SQL
+  - NoSQL
+  - NPM
+  - CLI
+  - SDK
+  - JDK
+  - JVM
+  - JRE
+  - JIT
+  - AOT
+  - LLVM
+  - GCC
+  - REPL
+  - AST
+  - IR
+  - DSL
+  - POSIX
+  - PCRE
+  - RegEx
+
+  # Architecture & Patterns
+  - ORM
+  - MVC
+  - MVVM
+  - MVP
+  - DDD
+  - CQRS
+  - SOA
+  - EDA
+  - ETL
+  - ELT
+  - BFF
+  - DAO
+  - DTO
+  - ACID
+  - BASE
+  - CAP
+  - SOLID
+  - DRY
+  - KISS
+  - YAGNI
+
+  # DevOps & CI/CD
+  - CI
+  - CD
+  - IaC
+  - VM
+  - VPS
+  - SSH
+  - TLS
+  - SSL
+  - DNS
+  - TCP
+  - UDP
+  - IP
+  - VPN
+  - CIDR
+  - DHCP
+  - NAT
+  - LB
+  - NFS
+  - SFTP
+  - FTP
+  - SCP
+
+  # Cloud & Infrastructure
+  - AWS
+  - GCP
+  - GPU
+  - CPU
+  - RAM
+  - SSD
+  - HDD
+  - NVMe
+  - RAID
+  - IOPS
+  - CDK
+  - ECS
+  - EKS
+  - GKE
+  - AKS
+  - VPC
+  - IAM
+  - SQS
+  - SNS
+  - SES
+  - RDS
+  - DynamoDB
+  - S3
+
+  # Data & Databases
+  - RDBMS
+  - OLTP
+  - OLAP
+  - CDC
+  - CSV
+  - TSV
+  - BSON
+  - Avro
+  - ORC
+  - UUID
+  - GUID
+  - BLOB
+  - CLOB
+  - DDL
+  - DML
+  - CTE
+
+  # AI & Machine Learning
+  - AI
+  - ML
+  - DL
+  - NLP
+  - NLU
+  - NLG
+  - LLM
+  - GPT
+  - GAN
+  - CNN
+  - RNN
+  - LSTM
+  - BERT
+  - RAG
+  - RLHF
+  - OCR
+  - CV
+  - ANN
+  - MLP
+  - SVM
+  - KNN
+  - PCA
+
+  # Testing & Quality
+  - TDD
+  - BDD
+  - QA
+  - UAT
+  - E2E
+  - SAST
+  - DAST
+  - IAST
+  - SCA
+  - SBOM
+  - CVE
+  - CVSS
+
+  # Tools & IDEs
+  - IDE
+  - VSCode
+  - VIM
+  - GIT
+  - SVN
+  - JIRA
+  - ITSM
+  - APM
+  - ELK
+
+  # Security
+  - XSS
+  - CSRF
+  - SSRF
+  - SQLi
+  - RCE
+  - MFA
+  - TOTP
+  - RBAC
+  - ABAC
+  - ACL
+  - PKI
+  - HSM
+  - WAF
+  - IDS
+  - IPS
+  - SIEM
+  - SOC
+  - OWASP
+  - PII
+  - GDPR
+  - HIPAA
+  - PCI
+  - ISO
+
+  # Protocols & Standards
+  - AMQP
+  - SMTP
+  - IMAP
+  - POP3
+  - LDAP
+  - SAML
+  - OIDC
+  - WebSocket
+  - SSE
+  - RSS
+  - ATOM
+
+  # Containers & Orchestration
+  - OCI
+  - CRI
+  - CNI
+  - CSI
+  - K8s
+  - HELM
+
+  # Miscellaneous
+  - ASCII
+  - UTF
+  - BASE64
+  - FIFO
+  - LIFO
+  - CRON
+  - PID
+  - TTY
+  - EOF
+  - STDIN
+  - STDOUT
+  - STDERR
+  - OS
+  - BIOS
+  - UEFI
+  - EFI
+  - IoT
+  - AR
+  - VR
+  - SLA
+  - SLO
+  - SLI
+  - KPI
+  - ROI
+  - MVP
+  - POC
+  - RFC
+  - PR
+  - MR
