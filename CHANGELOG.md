@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.0] - 2026-03-08
+
+### Changed
+- Unified language files: translations and language metadata now live in a single file per language (`languages/{en,de}.yaml`)
+- Removed `translations/` directory — all content merged into `languages/`
+- German language name changed from "German" to "Deutsch"
+
 ## [1.2.0] - 2026-02-25
 
 ### Added
