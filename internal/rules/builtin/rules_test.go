@@ -13,7 +13,7 @@ import (
 func loadTestTranslator(t *testing.T) *i18n.Translator {
 	t.Helper()
 	dir := findProjectRoot(t)
-	tr, err := i18n.Load(filepath.Join(dir, "translations"), "en", "en")
+	tr, err := i18n.Load(filepath.Join(dir, "languages"), "en", "en")
 	if err != nil {
 		t.Fatalf("failed to load translator: %v", err)
 	}

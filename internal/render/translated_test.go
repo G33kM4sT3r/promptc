@@ -10,14 +10,14 @@ import (
 	"promptc/internal/prompt"
 )
 
-// translationsDir returns the absolute path to the project's translations/ directory.
-func translationsDir() string {
+// languagesDir returns the absolute path to the project's languages/ directory.
+func languagesDir() string {
 	_, file, _, _ := runtime.Caller(0)
-	return filepath.Join(filepath.Dir(file), "..", "..", "translations")
+	return filepath.Join(filepath.Dir(file), "..", "..", "languages")
 }
 
 func TestTranslatedRendererEnglish(t *testing.T) {
-	translator, err := i18n.Load(translationsDir(), "en", "en")
+	translator, err := i18n.Load(languagesDir(), "en", "en")
 	if err != nil {
 		t.Fatalf("failed to load English translations: %v", err)
 	}
@@ -60,7 +60,7 @@ func TestTranslatedRendererEnglish(t *testing.T) {
 }
 
 func TestTranslatedRendererGerman(t *testing.T) {
-	translator, err := i18n.Load(translationsDir(), "de", "en")
+	translator, err := i18n.Load(languagesDir(), "de", "en")
 	if err != nil {
 		t.Fatalf("failed to load German translations: %v", err)
 	}
@@ -98,7 +98,7 @@ func TestTranslatedRendererGerman(t *testing.T) {
 }
 
 func TestTranslatedRendererEmptySpec(t *testing.T) {
-	translator, err := i18n.Load(translationsDir(), "en", "en")
+	translator, err := i18n.Load(languagesDir(), "en", "en")
 	if err != nil {
 		t.Fatalf("failed to load translations: %v", err)
 	}
@@ -112,7 +112,7 @@ func TestTranslatedRendererEmptySpec(t *testing.T) {
 }
 
 func TestTranslatedRendererRenderScore(t *testing.T) {
-	translator, err := i18n.Load(translationsDir(), "en", "en")
+	translator, err := i18n.Load(languagesDir(), "en", "en")
 	if err != nil {
 		t.Fatalf("failed to load translations: %v", err)
 	}

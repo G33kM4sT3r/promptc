@@ -110,7 +110,7 @@ objective:
 
 func TestLoadProjectTranslations(t *testing.T) {
 	dir := findProjectRoot(t)
-	trDir := filepath.Join(dir, "translations")
+	trDir := filepath.Join(dir, "languages")
 
 	// Load English
 	en, err := Load(trDir, "en", "en")
@@ -234,13 +234,13 @@ objective:
 
 func TestTranslationSymmetry(t *testing.T) {
 	dir := findProjectRoot(t)
-	translationsDir := filepath.Join(dir, "translations")
+	langDir := filepath.Join(dir, "languages")
 
-	en, err := loadTranslationFile(filepath.Join(translationsDir, "en.yaml"))
+	en, err := loadTranslationFile(filepath.Join(langDir, "en.yaml"))
 	if err != nil {
 		t.Fatalf("loading en.yaml: %v", err)
 	}
-	de, err := loadTranslationFile(filepath.Join(translationsDir, "de.yaml"))
+	de, err := loadTranslationFile(filepath.Join(langDir, "de.yaml"))
 	if err != nil {
 		t.Fatalf("loading de.yaml: %v", err)
 	}

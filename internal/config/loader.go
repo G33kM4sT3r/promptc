@@ -68,8 +68,12 @@ func Load(baseDir string) (*Config, error) {
 			continue
 		}
 		var lang LanguageConfig
-		if err := loadYAML(filepath.Join(langDir, entry.Name()), &lang); err != nil {
-			return nil, fmt.Errorf("loading language %s: %w", entry.Name(), err)
+		langData, err := os.ReadFile(filepath.Join(langDir, entry.Name()))
+		if err != nil {
+			return nil, fmt.Errorf("reading language %s: %w", entry.Name(), err)
+		}
+		if err := yaml.Unmarshal(langData, &lang); err != nil {
+			return nil, fmt.Errorf("parsing language %s: %w", entry.Name(), err)
 		}
 		code := lang.Code
 		if code == "" {

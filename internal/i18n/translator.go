@@ -16,9 +16,9 @@ type Translator struct {
 }
 
 // Load creates a Translator for the given language, with fallback to fallbackLang.
-// translationsDir contains YAML files named by language code (e.g., "en.yaml", "de.yaml").
-func Load(translationsDir, lang, fallbackLang string) (*Translator, error) {
-	fallbackStrings, err := loadTranslationFile(filepath.Join(translationsDir, fallbackLang+".yaml"))
+// langDir contains YAML files named by language code (e.g., "en.yaml", "de.yaml").
+func Load(langDir, lang, fallbackLang string) (*Translator, error) {
+	fallbackStrings, err := loadTranslationFile(filepath.Join(langDir, fallbackLang+".yaml"))
 	if err != nil {
 		return nil, fmt.Errorf("loading fallback translations (%s): %w", fallbackLang, err)
 	}
@@ -27,7 +27,7 @@ func Load(translationsDir, lang, fallbackLang string) (*Translator, error) {
 	if lang == fallbackLang {
 		langStrings = fallbackStrings
 	} else {
-		langStrings, err = loadTranslationFile(filepath.Join(translationsDir, lang+".yaml"))
+		langStrings, err = loadTranslationFile(filepath.Join(langDir, lang+".yaml"))
 		if err != nil {
 			// If target language file missing, use fallback entirely
 			langStrings = make(map[string]string)

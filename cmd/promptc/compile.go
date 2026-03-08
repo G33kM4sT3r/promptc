@@ -172,10 +172,10 @@ func loadTranslator(baseDir, lang string) *i18n.Translator {
 	if lang == "" || lang == "unknown" {
 		lang = "en"
 	}
-	translationsDir := filepath.Join(baseDir, "translations")
-	translator, err := i18n.Load(translationsDir, lang, "en")
+	langDir := filepath.Join(baseDir, "languages")
+	translator, err := i18n.Load(langDir, lang, "en")
 	if err != nil {
-		translator, _ = i18n.Load(translationsDir, "en", "en")
+		translator, _ = i18n.Load(langDir, "en", "en")
 	}
 	return translator
 }

@@ -1,5 +1,297 @@
 name: English
 code: en
+
+format:
+  date: "Jan 2, 2006"
+  datetime: "Jan 2, 2006 3:04 PM"
+  time: "3:04 PM"
+
+labels:
+  role: "Role"
+  objective: "Objective"
+  context: "Context"
+  scope: "Scope"
+  constraints: "Constraints"
+  output: "Output"
+  quality: "Quality criteria"
+
+objective:
+  explain: "Explain %s."
+  howto: "Provide guidance on how to %s."
+  generate: "Generate %s."
+  analyze: "Analyze %s."
+  decide: "Help decide on %s."
+  debug: "Debug %s."
+  refactor: "Refactor %s."
+  summarize: "Summarize %s."
+  fallback: "Provide relevant information."
+  fallback_topic: "the given topic"
+
+role:
+  from_entity: "You are experienced in working with %s."
+
+context:
+  getting_started: "The user is at an early stage and is looking for initial guidance."
+  implementation: "The user is actively implementing a solution."
+  optimization: "The user is looking to improve an existing solution."
+  audience_beginners: "The explanation should be beginner-friendly."
+  audience_advanced: "The explanation may assume advanced prior knowledge."
+  target_object: "The target domain is %s."
+
+scope:
+  # explain scopes
+  explain_short_overview: "Provide a high-level overview"
+  explain_short_key: "Explain the key concept briefly"
+  explain_deep_detail: "Explain the core concepts in detail"
+  explain_deep_examples: "Provide practical examples"
+  explain_deep_nuances: "Discuss important nuances"
+  explain_main: "Explain the main concept"
+  explain_aspects: "Cover the most important aspects"
+  # howto scopes
+  howto_gs_goals: "Clarify the project goals and requirements"
+  howto_gs_approach: "Outline a basic approach to start the project"
+  howto_gs_steps: "Identify initial concrete steps"
+  howto_impl_components: "Define the core components of the solution"
+  howto_impl_approach: "Describe a reasonable implementation approach"
+  howto_impl_pitfalls: "Highlight common pitfalls and considerations"
+  howto_opt_identify: "Identify areas for improvement"
+  howto_opt_strategies: "Suggest measurable optimization strategies"
+  howto_opt_prioritize: "Prioritize changes by impact"
+  # generate scopes
+  generate_complete: "Produce complete, ready-to-use output"
+  generate_conventions: "Follow established conventions and best practices"
+  generate_structure: "Include necessary structure and organization"
+  # analyze scopes
+  analyze_strengths: "Identify strengths and weaknesses"
+  analyze_evidence: "Provide evidence-based observations"
+  analyze_improvements: "Suggest concrete improvements"
+  # decide scopes
+  decide_options: "Present available options clearly"
+  decide_tradeoffs: "Compare trade-offs between alternatives"
+  decide_recommendation: "Provide a recommendation with rationale"
+  # debug scopes
+  debug_symptoms: "Describe the observed symptoms and expected behavior"
+  debug_hypotheses: "Identify likely root causes"
+  debug_investigation: "Outline systematic investigation steps"
+  debug_resolution: "Suggest targeted fixes"
+  # refactor scopes
+  refactor_problems: "Identify current structural problems"
+  refactor_approach: "Propose a refactoring approach"
+  refactor_before_after: "Describe the expected before and after state"
+  refactor_risks: "Highlight risks and mitigation strategies"
+  # summarize scopes
+  summarize_key_points: "Extract the key points"
+  summarize_relationships: "Explain how concepts relate"
+  summarize_takeaways: "Provide actionable takeaways"
+  # fallback
+  fallback: "Address the main topic clearly"
+  example_reference: "Use %s as a reference example"
+
+constraints:
+  concise: "Keep the response concise"
+  detailed: "Provide detailed explanations"
+  simple_language: "Use simple and clear language"
+  no_jargon: "Avoid unnecessary jargon"
+  technical_accuracy: "Focus on technical accuracy"
+  formal: "Use formal, professional language"
+  casual: "Use a casual, conversational tone"
+  technical: "Use precise technical terminology"
+  practical_usage: "Focus on practical usage of %s"
+  no_use: "Do not use %s"
+
+output:
+  bullets: "Use bullet points"
+  steps: "Use a step-by-step structure"
+  prose: "Use flowing prose paragraphs"
+  table: "Use a table format for comparison"
+  code: "Include code examples with comments"
+  howto: "Present the solution in a clear, sequential order"
+  explain: "Use clear section headings"
+  generate: "Present the output in a ready-to-use format"
+  analyze: "Structure findings with clear categories"
+  decide: "Present options side by side for easy comparison"
+  debug: "Structure findings as diagnosis with clear evidence"
+  refactor: "Show before/after comparisons"
+  summarize: "Present a concise, structured summary"
+  brief: "Keep sections brief"
+  fallback: "Use a clear and readable structure"
+
+quality:
+  clear: "Clear and structured"
+  accurate: "Accurate"
+  complete: "Complete and ready to use"
+  balanced: "Balanced and evidence-based"
+  fair: "Fair comparison of all options"
+  systematic: "Systematic and thorough"
+  preserves_behavior: "Preserves existing behavior"
+  concise_summary: "Concise yet comprehensive"
+
+enrichment:
+  role:
+    explain:
+      standard: "knowledgeable instructor"
+      rich: "expert instructor who adapts explanations to the audience"
+    howto:
+      standard: "practical guide"
+      rich: "experienced mentor who anticipates common pitfalls"
+    generate:
+      standard: "skilled developer"
+      rich: "senior developer focused on production-quality output"
+    analyze:
+      standard: "analytical reviewer"
+      rich: "senior analyst with a systematic evaluation approach"
+    decide:
+      rich: "objective advisor who weighs trade-offs fairly"
+    debug:
+      standard: "systematic debugger"
+      rich: "senior engineer experienced in root cause analysis"
+    refactor:
+      standard: "code quality advocate"
+      rich: "senior architect focused on maintainability and clarity"
+    summarize:
+      standard: "concise communicator"
+  context:
+    explain:
+      standard:
+        approach: "Start with the big picture before diving into details."
+      rich:
+        foundations: "Consider what foundational knowledge the audience needs."
+        depth: "Build understanding progressively from simple to complex."
+    howto:
+      rich:
+        full_picture: "Consider the full lifecycle from setup through maintenance."
+    generate:
+      rich:
+        production: "The output should be suitable for a production environment."
+    analyze:
+      rich:
+        systematic: "Apply a systematic evaluation framework."
+    debug:
+      standard:
+        systematic: "Approach the problem systematically."
+      rich:
+        reproduction: "Reliable reproduction is the foundation of effective debugging."
+        isolation: "Isolate variables to narrow down the root cause."
+    refactor:
+      rich:
+        preservation: "Existing behavior must be preserved throughout the refactoring."
+    summarize:
+      rich:
+        audience: "Tailor the level of detail to the intended audience."
+  scope:
+    explain:
+      standard:
+        analogy: "Use an analogy or real-world comparison to build intuition"
+      rich:
+        examples: "Provide concrete examples that illustrate each concept"
+        misconceptions: "Address common misconceptions"
+        edge_cases: "Discuss edge cases and when the concept breaks down"
+    howto:
+      rich:
+        validation: "Include validation steps to confirm progress"
+    generate:
+      rich:
+        error_handling: "Include error handling for likely failure modes"
+        conventions: "Follow language and framework conventions"
+    analyze:
+      rich:
+        metrics: "Include quantitative metrics where applicable"
+    debug:
+      rich:
+        reproduction: "Include minimal reproduction steps"
+    refactor:
+      rich:
+        testing: "Ensure test coverage before and after changes"
+    decide:
+      rich:
+        criteria: "Evaluate each option against the same criteria"
+    summarize:
+      rich:
+        hierarchy: "Organize information by importance, not by source order"
+  constraints:
+    explain:
+      rich:
+        define_terms: "Define technical terms before using them"
+    generate:
+      rich:
+        production_ready: "Ensure the output handles edge cases gracefully"
+    debug:
+      standard:
+        testable: "Suggest testable, verifiable steps"
+      rich:
+        evidence: "Support each hypothesis with observable evidence"
+        no_assumptions: "Do not assume the obvious cause — verify systematically"
+    refactor:
+      rich:
+        incremental: "Prefer incremental changes over big-bang rewrites"
+  output:
+    explain:
+      rich:
+        summary_lead: "Lead each section with a one-sentence summary"
+    decide:
+      standard:
+        table: "Use a structured comparison format"
+      rich:
+        matrix: "Use a decision matrix with weighted criteria"
+        recommendation: "End with a clear, justified recommendation"
+    debug:
+      rich:
+        evidence_chain: "Present findings as an evidence chain from symptom to cause"
+  quality:
+    explain:
+      rich:
+        accessible: "Accessible without sacrificing correctness"
+    debug:
+      rich:
+        reproducible: "Each step should be independently reproducible"
+    generate:
+      rich:
+        maintainable: "Maintainable and easy to extend"
+    refactor:
+      rich:
+        measurable: "Improvements should be measurable"
+
+cross:
+  beginner_explain_scope: "Start with the big picture before details"
+  beginner_generate_constraint: "Include inline comments explaining each section"
+  beginner_debug_scope: "Explain the reasoning behind each investigation step"
+  advanced_analyze_scope: "Include quantitative metrics where applicable"
+  advanced_generate_constraint: "Optimize for performance and idiomatic patterns"
+  medium_generate_constraint: "Follow %s idioms and conventions"
+  medium_debug_scope: "Consider %s-specific common failure modes"
+  medium_explain_scope: "Illustrate with %s code examples"
+  multi_entity_decide_scope: "Evaluate each option against the same criteria"
+  gs_deep_context: "Provide a thorough foundation for long-term understanding."
+  impl_short_constraint: "Focus on the immediate next step only"
+  opt_deep_scope: "Include benchmarking methodology"
+  beginner_deep_context: "Provide depth while maintaining accessibility."
+  advanced_short_constraint: "Be concise but assume full technical background"
+  beginner_technical_constraint: "Define technical terms before using them"
+
+topic_verbs:
+  - explain
+  - describe
+  - define
+  - clarify
+  - elaborate
+  - generate
+  - create
+  - write
+  - build
+  - make
+  - produce
+  - draft
+  - implement
+  - analyze
+  - analyse
+  - review
+  - evaluate
+  - assess
+  - examine
+  - decide
+  - choose
+  - compare
+  - recommend
 stop_words:
   - the
   - a
@@ -74,27 +366,3 @@ stop_words:
   - she
   - his
   - her
-topic_verbs:
-  - explain
-  - describe
-  - define
-  - clarify
-  - elaborate
-  - generate
-  - create
-  - write
-  - build
-  - make
-  - produce
-  - draft
-  - implement
-  - analyze
-  - analyse
-  - review
-  - evaluate
-  - assess
-  - examine
-  - decide
-  - choose
-  - compare
-  - recommend

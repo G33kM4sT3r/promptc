@@ -69,8 +69,8 @@ func TestLoad(t *testing.T) {
 	}
 	if de, ok := cfg.Languages["de"]; !ok {
 		t.Error("missing German language config")
-	} else if de.Name != "German" {
-		t.Errorf("German name = %q, want %q", de.Name, "German")
+	} else if de.Name != "Deutsch" {
+		t.Errorf("German name = %q, want %q", de.Name, "Deutsch")
 	}
 }
 
@@ -223,6 +223,32 @@ func TestLoadYAML_InvalidYAML(t *testing.T) {
 	err := loadYAML(path, &target)
 	if err == nil {
 		t.Error("expected error for invalid YAML")
+	}
+}
+
+func TestLoad_LanguageWithExtraFields(t *testing.T) {
+	dir := t.TempDir()
+	dataDir := filepath.Join(dir, "data")
+	langDir := filepath.Join(dir, "languages")
+	_ = os.MkdirAll(dataDir, 0o755)
+	_ = os.MkdirAll(langDir, 0o755)
+
+	_ = os.WriteFile(filepath.Join(dataDir, "intents.yaml"), []byte("intents: {}"), 0o644)
+	_ = os.WriteFile(filepath.Join(dataDir, "modifiers.yaml"), []byte("audience: {}\ndepth: {}\nstyle: {}\nformat: {}"), 0o644)
+	_ = os.WriteFile(filepath.Join(dataDir, "stages.yaml"), []byte("{}"), 0o644)
+	_ = os.WriteFile(filepath.Join(dataDir, "entities.yaml"), []byte("{}"), 0o644)
+	_ = os.WriteFile(filepath.Join(langDir, "en.yaml"), []byte("labels:\n  role: Role\nobjective:\n  explain: \"Explain %s.\"\nname: English\ncode: en\nstop_words: [the]\ntopic_verbs: [explain]"), 0o644)
+
+	cfg, err := Load(dir)
+	if err != nil {
+		t.Fatalf("Load() should succeed with extra fields in language file: %v", err)
+	}
+	en := cfg.Languages["en"]
+	if en.Name != "English" {
+		t.Errorf("Name = %q, want English", en.Name)
+	}
+	if len(en.StopWords) != 1 || en.StopWords[0] != "the" {
+		t.Errorf("StopWords = %v, want [the]", en.StopWords)
 	}
 }
 

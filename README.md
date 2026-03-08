@@ -249,10 +249,10 @@ Input → Normalize → Tokenize (phrase → boundary → split) → Detect Lang
 ## Extending
 
 - **Keywords** — add to `data/*.yaml` and `languages/*.yaml` (no code changes needed)
-- **Languages** — add a new `translations/<lang>.yaml` file with translated label and rule strings
+- **Languages** — add a new `languages/<lang>.yaml` file with translated label and rule strings, stop words, and topic verbs
 - **Rules** — add to `internal/rules/builtin/` and register in the pipeline
 - **Acronyms** — add to `data/acronyms.yaml` for canonical casing in topics
-- **Enrichments** — edit `data/enrichments.yaml` to add tier-based content per intent/section; actual text lives in `translations/*.yaml` under `enrichment.*` and `cross.*` namespaces
+- **Enrichments** — edit `data/enrichments.yaml` to add tier-based content per intent/section; actual text lives in `languages/*.yaml` under `enrichment.*` and `cross.*` namespaces
 
 ## Design Principles
 

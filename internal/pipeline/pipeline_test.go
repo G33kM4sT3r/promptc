@@ -93,7 +93,7 @@ func loadTestTranslator(t *testing.T, lang string) *i18n.Translator {
 	if lang == "" || lang == "unknown" {
 		lang = "en"
 	}
-	translator, err := i18n.Load(filepath.Join(dir, "translations"), lang, "en")
+	translator, err := i18n.Load(filepath.Join(dir, "languages"), lang, "en")
 	if err != nil {
 		t.Fatalf("failed to load translator: %v", err)
 	}

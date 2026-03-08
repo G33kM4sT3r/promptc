@@ -37,9 +37,9 @@ This requires [golangci-lint](https://golangci-lint.run/usage/install/) to be in
 - Avoid heavy nesting — extract helpers for nested map lookups; prefer flat control flow over deeply nested conditionals
 - Ensure all tests pass and coverage stays above 80%
 - Follow existing code conventions (run `make fmt` before committing)
-- Update translations in both `translations/en.yaml` and `translations/de.yaml` if adding user-facing strings — keys must be symmetric across both files
+- Update translations in both `languages/en.yaml` and `languages/de.yaml` if adding user-facing strings — keys must be symmetric across both files
 - Add tests for new functionality
-- When adding enrichment content, add translation keys in `data/enrichments.yaml` and actual text in `translations/*.yaml` under `enrichment.*` or `cross.*` namespaces
+- When adding enrichment content, add translation keys in `data/enrichments.yaml` and actual text in `languages/*.yaml` under `enrichment.*` or `cross.*` namespaces
 
 ## Project Structure
 

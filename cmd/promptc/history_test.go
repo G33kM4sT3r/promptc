@@ -33,8 +33,6 @@ func seedHistory(t *testing.T) string {
 	// Symlink data/ and languages/ from project root so the binary can load config
 	os.Symlink(filepath.Join(projectRoot, "data"), filepath.Join(dir, "data"))
 	os.Symlink(filepath.Join(projectRoot, "languages"), filepath.Join(dir, "languages"))
-	os.Symlink(filepath.Join(projectRoot, "translations"), filepath.Join(dir, "translations"))
-
 	store := history.NewStore(dir)
 	_ = store.Add(history.Entry{Input: "explain closures", Score: 70, Language: "en", Timestamp: time.Now()})
 	_ = store.Add(history.Entry{Input: "generate REST API", Score: 55, Language: "en", Timestamp: time.Now()})
